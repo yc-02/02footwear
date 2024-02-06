@@ -1,4 +1,5 @@
 import ProductCard from "../ components/ProductCard"
+import { Products } from "../../../types"
 
 
 export async function getData():Promise<Products[]> {
@@ -16,11 +17,8 @@ export async function getData():Promise<Products[]> {
 
 export default async function Product() {
   const data = await getData()
-  console.log(data)
-  const imageUrl = data[0].fields.image[0].fields.file.url;
-  console.log(imageUrl);
   return (
-<div className="md:grid grid-cols-3 gap-1">
+<div className="md:grid grid-cols-3 gap-4">
   {data.map((p)=>(
     <ProductCard key={p.sys.id} product={p}/>
   ))}

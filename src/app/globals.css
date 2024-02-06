@@ -5,7 +5,7 @@
 
 @layer base{
     .navbarSmall{
-        @apply grid-cols-2 h-full w-full fixed top-0 right-0 backdrop-blur
+        @apply grid-cols-2 h-full w-full fixed top-0 right-0 backdrop-blur z-10
     }
     .navbarSmallContent{
         @apply col-start-2 flex flex-col items-center text-start bg-slate-50 text-2xl gap-10
