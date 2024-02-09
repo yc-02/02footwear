@@ -1,12 +1,14 @@
 import { url } from "inspector"
 
 interface Products{
+    cartItemId:string
+    selectedSize: undefined|{size:string}
     sys:{
       id:string
     }
     fields:{
       title:string,
-      price:string,
+      price:number,
       description:any,
       slug:string,
       image:{

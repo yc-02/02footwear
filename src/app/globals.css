@@ -5,9 +5,13 @@
 
 @layer base{
     .navbarSmall{
-        @apply grid-cols-2 h-full w-full fixed top-0 right-0 backdrop-blur z-10
+        @apply grid-cols-2 h-full w-full fixed top-0 right-0 backdrop-blur
     }
     .navbarSmallContent{
         @apply col-start-2 flex flex-col items-center text-start bg-slate-50 text-2xl gap-10
+    }
+    .dropdownContent{
+        @apply absolute left-0 w-full h-52 bg-white grid-cols-3 items-center text-center rounded shadow-lg
+   
     }
 }

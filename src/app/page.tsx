@@ -42,11 +42,11 @@ export default async function HomePage() {
     </div>
     <p className="text-2xl p-10">Trending</p>
     <div className="px-10 flex justify-center gap-5">
-        <div className="relative w-1/2 z-0">
+        <div className="relative w-1/2">
         <Image src={'http:'+trendingUrl[0]} width={trending[0].width} height={trending[0].height} alt="image" className="w-full rounded"/>
         <Link className=" absolute bottom-5 left-5 bg-white p-2 rounded-3xl" href="/product">Shop</Link>
         </div>
-        <div className="relative w-1/2 z-0">
+        <div className="relative w-1/2">
         <Image src={'http:'+trendingUrl[1]} width={trending[1].width} height={trending[1].height} alt="image" className="w-full rounded"/>
         <Link className=" absolute bottom-5 left-5 bg-white p-2 rounded-3xl" href="/product">Shop</Link>
         </div>

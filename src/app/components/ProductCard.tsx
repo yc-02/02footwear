@@ -17,7 +17,7 @@ export default function ProductCard({product}:ProductCardProps) {
        <Link href={'/product/'+product.fields.slug}>
         <Image src={'http:'+ imageUrl} width={imageWH.width} height={imageWH.height} alt="shoes" className="rounded object-cover"/>
       <h4>{product.fields.title}</h4>
-      <p>{product.fields.price}</p>
+      <p>${product.fields.price}</p>
       </Link>
       </div>
     </div>

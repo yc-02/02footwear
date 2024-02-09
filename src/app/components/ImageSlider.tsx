@@ -44,7 +44,7 @@ export default function ImageSlider({image}:ImageSliderProps) {
         <Image className="rounded-md cursor-pointer object-cover" src={'http:'+item.url} width={item.details.image.width} height={item.details.image.height} alt="" key={index} onClick={()=>setImageindex(index)}/>
         )}
         </div>
-        <div className="relative z-0">
+        <div className="relative">
         <Image className="rounded-md" src={'http:'+image[imageIndex].url} width={image[imageIndex].details.image.width} height={image[imageIndex].details.image.height} alt=""/>
             <div className="absolute bottom-0 right-1">
             <button className="p-2" onClick={showPrevImage}>

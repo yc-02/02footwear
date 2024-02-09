@@ -3,7 +3,7 @@ import Link from "next/link"
 
 
 
-export default function NavbarMd(){
+export default function NavbarTop(){
 
     return(
         <div className="hidden md:block">
