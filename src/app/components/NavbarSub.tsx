@@ -3,11 +3,12 @@ import Link from "next/link"
 import { useState } from "react"
 import Image from "next/image"
 import icon from "@/app/components/images/apple-touch-icon.png"
-import { useCart } from "./hooks/useCart"
+import useCart from "./hooks/useCart"
+
 
 export default function NavbarSub() {
-    const {items}=useCart()
-    const itemCount=items.length
+  const {itemCount}=useCart()
+
     const [open,setOpen]=useState(false)
     const toggle =()=>{
         setOpen(!open)

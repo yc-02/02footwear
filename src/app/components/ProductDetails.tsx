@@ -4,6 +4,7 @@ import ImageSlider from "@/app/components/ImageSlider"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import AddToCartButton from "./buttons/AddToCartButton";
 import { useState } from "react";
+import { v4 as uuidv4 } from 'uuid';
 
 
 
@@ -31,8 +32,13 @@ const [selectedSize,setSelectedSize]=useState<Size>()
 
 
 const productWithSize = {
-  ...product, 
-  selectedSize: selectedSize, 
+  name:product.fields.title,
+  slug:product.fields.slug,
+  qty:0,
+  image:product.fields.image[0].fields.file.url,
+  price:product.fields.price,
+  size:selectedSize?.size,
+  uuid:uuidv4()
 };
 
 
@@ -56,7 +62,7 @@ const productWithSize = {
           </button>
           )}
         </div>
-        <AddToCartButton product={productWithSize}/>
+        <AddToCartButton item={productWithSize}/>
         <button className="flex border-slate-800 border-2 p-1 rounded-2xl w-1/2 justify-center">Favorite 
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
               <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
