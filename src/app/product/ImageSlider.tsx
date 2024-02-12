@@ -15,6 +15,7 @@ type ImageSliderProps ={
 }
 
 
+
 export default function ImageSlider({image}:ImageSliderProps) {
 
     const [imageIndex,setImageindex]=useState(0)

@@ -33,6 +33,17 @@ export type CartItem={
   qty:number
   image:string
   price:number
-  size:string|undefined
+  size:string|undefined 
   uuid:string
+}
+
+export type Shipping={
+  firstName:string
+  lastName:string
+  address:string
+  city:string
+  state:string
+  zipCode:string
+  email:string
+  phone:string
 }

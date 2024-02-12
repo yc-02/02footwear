@@ -1,17 +1,13 @@
 "use client"
 import Link from "next/link"
 import Image from "next/image"
-import useCart from "./hooks/useCart"
+import useCart from "../components/hooks/useCart"
 
 
 
 export default function CartItems() {
 
   const {items,increase,decrease,deleteItem}=useCart()
-
-
-
-
 
   return (
     <div>

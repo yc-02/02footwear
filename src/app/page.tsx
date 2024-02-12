@@ -1,5 +1,7 @@
 import Link from "next/link"
 import Image from "next/image"
+
+
 type trendingUrl={
   fields:{
     file:{
@@ -7,6 +9,8 @@ type trendingUrl={
     }
   }
 }
+
+
 type trending={
   fields:{
     file:{
