@@ -125,3 +125,16 @@ export type ImageProps ={
     };
 }[]
 }
+
+export type AuthAddress = {
+  address:string
+  city:string
+  first_name: string
+  id:number
+  last_name:string
+  phone:string
+  state:string
+  user_id:string
+  zip_code:number
+  }
+  

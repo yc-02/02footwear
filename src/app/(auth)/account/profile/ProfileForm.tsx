@@ -3,31 +3,14 @@
 import { createClient } from "@/utils/supabase/client"
 import { User } from "@supabase/supabase-js"
 import { useRouter } from "next/navigation"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 
 
 
-export default function ProfileForm() {
+export default function ProfileForm({user}:{user:User}) {
     const router = useRouter()
     const supabase = createClient()
     
-//get user
-const getUser= async()=> {
-    const {data:{user},error}= await supabase.auth.getUser() 
-    if(user){
-        setUser(user)
-    }else{
-        console.log(error)
-        router.push('/')
-    }
-}
-
-    useEffect(()=>{
-        getUser()
-    },[])
-
-    const [user,setUser]=useState<User |null>(null)
-    console.log(user)
 //update user
     async function updateEmail(){
         const { data: user, error } = await supabase.auth.updateUser(

@@ -15,8 +15,12 @@ export default async function ShippingPage() {
   const cookieStore=cookies()
   const supabase= createClient(cookieStore)
   const {data:{user},error}=await supabase.auth.getUser()
+  const {data,error:dataError}=await supabase.from("delivery_address").select().eq('user_id',user?.id)
   if(error){
     throw new Error(error.message)
+  }
+  if(dataError){
+    throw new Error(dataError.message)
   }
 
   return (
@@ -26,7 +30,7 @@ export default async function ShippingPage() {
         {user?(
         <div className="flex flex-col gap-5 py-10">
         <CheckoutSteps current={1}/>
-        <UserShippingForm/>
+        <UserShippingForm user={user} data={data}/>
         </div>
         ):(
           <div className="flex flex-col items-center text-center gap-5 py-10">

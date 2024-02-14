@@ -16,7 +16,7 @@ export default async function DashboardPage() {
   return (
     <div className="p-10 flex flex-col gap-5">
       <h1 className='text-xl font-bold'>Profile</h1>
-      <ProfileForm/>
+      <ProfileForm user={user}/>
     </div>
   )
 }

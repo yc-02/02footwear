@@ -2,10 +2,12 @@
 import UserShippingAddress from "@/app/(auth)/account/shipping-addresses/UserShippingAddresses";
 import { useRouter } from "next/navigation";
 import { FormEvent } from "react";
+import { User } from '@supabase/supabase-js'
+import { AuthAddress } from "@/types";
 
 
 
-export default function UserShippingForm() {
+export default function UserShippingForm({user,data}:{user:User,data:AuthAddress[]}) {
   const router = useRouter()
 
 
@@ -18,7 +20,7 @@ export default function UserShippingForm() {
   return (
     <div>
         <form className="flex flex-col">
-          <UserShippingAddress/>
+          <UserShippingAddress user={user} data={data}/>
         <button
         onClick={SubmitHandler} 
         type="submit" 
