@@ -2,7 +2,6 @@ import { Metadata } from "next";
 import GuestShippingForm from "./GuestShippingForm";
 import CheckoutSteps from "@/app/components/CheckoutSteps";
 import { CheckoutItems } from "../CheckoutItems";
-import ShippingAddress from "@/app/(auth)/account/shipping-addresses/UserShippingAddresses";
 import { createClient } from "@/utils/supabase/server";
 import { cookies } from "next/headers";
 import UserShippingForm from "./UserShippingForm";
@@ -14,14 +13,9 @@ export const metadata:Metadata={
 export default async function ShippingPage() {
   const cookieStore=cookies()
   const supabase= createClient(cookieStore)
-  const {data:{user},error}=await supabase.auth.getUser()
-  const {data,error:dataError}=await supabase.from("delivery_address").select().eq('user_id',user?.id)
-  if(error){
-    throw new Error(error.message)
-  }
-  if(dataError){
-    throw new Error(dataError.message)
-  }
+  const {data:{user}}=await supabase.auth.getUser()
+  const {data}=await supabase.from("delivery_address").select().eq('user_id',user?.id)
+
 
   return (
     <div>

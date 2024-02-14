@@ -5,7 +5,7 @@ import Link from "next/link"
 
 
 export const CheckoutItems = () => {
-    const {items,subTotal,shippingFee,totalPrice}=useCart()
+    const {items,sub_total,shipping_fee,total_price}=useCart()
   return (
     <div>
         {items.map((item)=>
@@ -28,10 +28,10 @@ export const CheckoutItems = () => {
           )}
             <div className="flex flex-col gap-2">
               <hr />
-            <h1 className="flex justify-between">Subtotal: <span>${subTotal}</span></h1>
-            <p className="flex justify-between">Shipping & Handlings: <span>${shippingFee}</span></p>
+            <h1 className="flex justify-between">Subtotal: <span>${sub_total}</span></h1>
+            <p className="flex justify-between">Shipping & Handlings: <span>${shipping_fee}</span></p>
             <hr />
-            <p className="flex justify-between">Order Total <span>${totalPrice}</span></p>
+            <p className="flex justify-between">Order Total <span>${total_price}</span></p>
             </div>
     </div>
   )

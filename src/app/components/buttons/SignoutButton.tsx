@@ -3,6 +3,7 @@ import { useRouter} from 'next/navigation'
 import { createClient } from '@/utils/supabase/client'
 
 export default function SignoutButton() {
+
     const router=useRouter()
     const supabase=createClient()
     const handleSignOut=async()=>{
@@ -12,6 +13,7 @@ export default function SignoutButton() {
         }else{
             router.push('/')
             router.refresh()
+            
         }
     }
 

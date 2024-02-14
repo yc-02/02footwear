@@ -8,7 +8,7 @@ import { useEffect } from "react"
 
 const GuestShippingForm = ()=>{
     const router = useRouter()
-    const {saveShippingAddress,shippingDetails}=useCart()
+    const {saveShippingAddress,shipping_details}=useCart()
     const {register,handleSubmit,setValue,formState:{errors,isSubmitting}}=useForm<Shipping>({
         defaultValues:{
             firstName:"",
@@ -16,29 +16,30 @@ const GuestShippingForm = ()=>{
             address:"",
             city:"",
             state:"",
-            zipCode:0,
+            zipCode:"",
             email:"",
             phone:"",
         },
     })
 
     useEffect(()=>{
-        setValue('firstName',shippingDetails.firstName)
-        setValue('lastName',shippingDetails.lastName)
-        setValue('address',shippingDetails.address)
-        setValue('city',shippingDetails.city)
-        setValue('state',shippingDetails.state)
-        setValue('zipCode',shippingDetails.zipCode)
-        setValue('email',shippingDetails.email)
-        setValue('phone',shippingDetails.phone)
+        setValue('firstName',shipping_details.firstName)
+        setValue('lastName',shipping_details.lastName)
+        setValue('address',shipping_details.address)
+        setValue('city',shipping_details.city)
+        setValue('state',shipping_details.state)
+        setValue('zipCode',shipping_details.zipCode)
+        setValue('email',shipping_details.email)
+        setValue('phone',shipping_details.phone)
 
 
-    },[setValue,shippingDetails])
+    },[setValue,shipping_details])
 
     const onSubmit:SubmitHandler<Shipping>=async(form)=>{
         saveShippingAddress(form)
         router.push('/checkout/place-order')
     }
+
 
     const Input = ({ name, label, register, errors, required }: { name: string, label:string, register: any, errors: any, required?: boolean }) => (
         <div>
@@ -54,7 +55,7 @@ const GuestShippingForm = ()=>{
 return(
     <div>
         <form onSubmit={handleSubmit(onSubmit)} >
-            <div  className="md:grid grid-cols-2 gap-2 text-start">
+            <div  className="grid grid-cols-2 gap-2 text-start">
         
             <Input name="firstName" label="First Name" register={register} errors={errors} required />
             <Input name="lastName" label="Last Name" register={register} errors={errors} required />

@@ -7,31 +7,31 @@ import { CartItem, Shipping } from '@/types'
 
 type CartState = {
     items:CartItem[];
-    subTotal:number;
-    shippingFee:number;
-    itemCount:number;
-    shippingDetails:Shipping;
-    totalPrice:number
+    sub_total:number;
+    shipping_fee:number;
+    items_count:number;
+    shipping_details:Shipping;
+    total_price:number
   };
   
 
   const initialState:CartState={
       items: [],
-      subTotal:0,
-      shippingFee:0,
-      itemCount:0,
-      shippingDetails:{
+      sub_total:0,
+      shipping_fee:0,
+      items_count:0,
+      shipping_details:{
         firstName:"",
         lastName:"",
         address:"",
         city:"",
         state:"",
-        zipCode:0,
+        zipCode:"",
         email:"",
         phone:"",
         userId:"",
       },
-      totalPrice:0,
+      total_price:0,
   }
 
 
@@ -40,14 +40,14 @@ type CartState = {
   }));
 
   export default function useCart(){
-    const {items,subTotal,shippingFee,itemCount,totalPrice,shippingDetails}=CartStore()
+    const {items,sub_total,shipping_fee,items_count,total_price,shipping_details}=CartStore()
     return{
         items,
-        subTotal,
-        shippingFee,
-        itemCount,
-        totalPrice,
-        shippingDetails,
+        sub_total,
+        shipping_fee,
+        items_count,
+        total_price,
+        shipping_details,
         increase: (item:CartItem)=>{
             const exist = items.find((e)=>e.slug === item.slug && e.size ===item.size)
             if (exist) {
@@ -57,10 +57,10 @@ type CartState = {
             }
             CartStore.setState({
                 items,
-                subTotal:calcPrice(items).subTotal, 
-                shippingFee:calcPrice(items).shippingFee,
-                itemCount:calcPrice(items).itemCount,
-                totalPrice:calcPrice(items).totalPrice
+                sub_total:calcPrice(items).subTotal, 
+                shipping_fee:calcPrice(items).shippingFee,
+                items_count:calcPrice(items).itemCount,
+                total_price:calcPrice(items).totalPrice
 
             })
         },
@@ -72,10 +72,10 @@ type CartState = {
                     const updatedItems=items.filter((e) => !(e.slug === item.slug && e.size === item.size));
                     CartStore.setState({
                         items:updatedItems,
-                        subTotal:calcPrice(updatedItems).subTotal, 
-                        itemCount:calcPrice(updatedItems).itemCount,
-                        shippingFee:calcPrice(updatedItems).shippingFee,
-                        totalPrice:calcPrice(updatedItems).totalPrice
+                        sub_total:calcPrice(updatedItems).subTotal, 
+                        items_count:calcPrice(updatedItems).itemCount,
+                        shipping_fee:calcPrice(updatedItems).shippingFee,
+                        total_price:calcPrice(updatedItems).totalPrice
                     })
         
                 } else {
@@ -83,10 +83,10 @@ type CartState = {
                     exist.qty--
                     CartStore.setState({
                         items,
-                        subTotal:calcPrice(items).subTotal, 
-                        itemCount:calcPrice(items).itemCount,
-                        shippingFee:calcPrice(items).shippingFee,
-                        totalPrice:calcPrice(items).totalPrice
+                        sub_total:calcPrice(items).subTotal, 
+                        items_count:calcPrice(items).itemCount,
+                        shipping_fee:calcPrice(items).shippingFee,
+                        total_price:calcPrice(items).totalPrice
                     })
                 }
         },
@@ -96,25 +96,19 @@ type CartState = {
                 const updatedItems=items.filter((e) => !(e.slug === item.slug && e.size === item.size));
                 CartStore.setState({
                     items:updatedItems,
-                    subTotal:calcPrice(updatedItems).subTotal, 
-                    itemCount:calcPrice(updatedItems).itemCount,
-                    shippingFee:calcPrice(updatedItems).shippingFee,
-                    totalPrice:calcPrice(updatedItems).totalPrice,
+                    sub_total:calcPrice(updatedItems).subTotal, 
+                    items_count:calcPrice(updatedItems).itemCount,
+                    shipping_fee:calcPrice(updatedItems).shippingFee,
+                    total_price:calcPrice(updatedItems).totalPrice,
                 })
             }
         },
-        saveShippingAddress:(shippingDetails:Shipping)=>{
-            CartStore.setState({shippingDetails})
+        saveShippingAddress:(shipping_details:Shipping)=>{
+            CartStore.setState({shipping_details})
         },
         clear:()=>{
-            CartStore.setState({
-                items: [],
-                subTotal:0,
-                shippingFee:0,
-                itemCount:0,
-                totalPrice:0,
-            })
-        }
+            CartStore.setState(initialState)
+        },
     }
 }
   

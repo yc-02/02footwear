@@ -44,9 +44,8 @@ const supabase = createClient(cookieStore)
   }
   
   const { data,error } = await supabase.auth.signUp(Formdata)
-  console.log(data)
    if (error) {
-     console.log(error.message)
+     throw new Error(error.message)
     }
     else{
       revalidatePath('/', 'layout')

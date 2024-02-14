@@ -1,16 +1,16 @@
 "use client"
 import useCart from '@/app/components/hooks/useCart'
-import { AuthAddress } from '@/types'
+import {UserShippingOption } from '@/types'
 import { User } from '@supabase/supabase-js'
 
 
 
-export default function UserShippingAddress({user,data}:{user:User,data:AuthAddress[]}) {
+export default function UserShippingAddress({user,data}:{user:User,data:UserShippingOption[]|null}) {
 
-  const {saveShippingAddress,shippingDetails}=useCart()
+  const {saveShippingAddress,shipping_details}=useCart()
 
 
-  const handleRadioChange=(item:AuthAddress)=>{
+  const handleRadioChange=(item:UserShippingOption)=>{
     saveShippingAddress({
       firstName:item.first_name,
       lastName:item.last_name,
@@ -24,18 +24,13 @@ export default function UserShippingAddress({user,data}:{user:User,data:AuthAddr
     })
   }
 
-
-
-
-console.log(shippingDetails)
-    
   
   return (
-    <div className='p-5'>
-      <p className='font-bold pb-10'>Shipping addresses</p>
-      <div className='bg-slate-50 p-5'>
+
+      
+      <div className='flex flex-col gap-3 md:items-center'>
       {data?.map((a)=>(
-        <div key={a.id}>
+        <div key={a.id} className='bg-slate-50 md:w-3/4 p-10'>
               <div className='flex gap-5'>
                 <input
                 className='cursor-pointer'
@@ -52,11 +47,10 @@ console.log(shippingDetails)
                 <span>{a.phone}</span>
                 </label>
               </div>
-              <hr />
           </div>
       ))}
       </div>
 
-    </div>
+
   )
 }

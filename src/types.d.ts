@@ -60,16 +60,26 @@ interface Products{
        }
     }[],
   }
-
+  export type ImageProps ={
+    image: {
+      url: string;
+      details: {
+          image: {
+              width: number;
+              height: number;
+          };
+      };
+  }[]
+  }
 
 export type CartItem={
-  name:string
   id:string
-  slug:string
-  qty:number
   image:string
+  name:string
   price:number
-  size:string|undefined 
+  qty:number
+  size:string|undefined
+  slug:string
 }
 
 export type Shipping={
@@ -78,63 +88,41 @@ export type Shipping={
   address:string|undefined
   city:string|undefined
   state:string|undefined
-  zipCode:number|undefined
+  zipCode:string|undefined
   email:string|undefined
   phone:string|undefined
   userId:string|undefined
 }
 
 export type Order={
-  createdAt:Date,
-  shippingDetails: {
-    address:string,
-    city:string,
-    email:string,
-    firstName:string,
-    lastName:string,
-    phone:string,
-    state:string,
-    zipCode:string,}
-    isDelivered:boolean,
-    isPaid:boolean,
-    items:{
-      id:string, 
-      name:string,
-      image:string, 
-      slug:string,
-      price:number
-      qty:number,
-      size:string,
-      _id:string,
-    }[]
-    paymentMethod:string,
-    shippingFee:number,
-    subTotal:number,
-    totalPrice:number,
-    _id:string,
+  id:string
+  created_at:Date
+  delivered_at:boolean|null
+  email:string|null
+  user_id:number|null
+  phone:string|null
+  is_delivered:boolean
+  items:CartItem[]
+  shipping_details:Shipping
+  items_count:number
+  payment_method:string
+  shipping_fee:number
+  sub_total:number
+  total_price:number
+
+
 }
 
-export type ImageProps ={
-  image: {
-    url: string;
-    details: {
-        image: {
-            width: number;
-            height: number;
-        };
-    };
-}[]
-}
-
-export type AuthAddress = {
+export type UserShippingOption ={
   address:string
   city:string
-  first_name: string
-  id:number
+  created_at:Date
+  first_name:string
+  id:string
   last_name:string
   phone:string
-  state:string
+  state: string
   user_id:string
-  zip_code:number
-  }
-  
+  zip_code:string
+}
+
