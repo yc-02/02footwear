@@ -1,14 +1,14 @@
 "use client"
 import { useRouter } from "next/navigation"
 import useCart from "../../components/hooks/useCart"
-import { SubmitHandler, ValidationRule, useForm } from "react-hook-form"
-import { Shipping } from "../../../../types"
+import { SubmitHandler,useForm } from "react-hook-form"
+import { Shipping } from "../../../types"
 import { useEffect } from "react"
 
 
-const ShippingForm = ()=>{
+const GuestShippingForm = ()=>{
     const router = useRouter()
-    const {saveShippingAddress,guestShipping}=useCart()
+    const {saveShippingAddress,shippingDetails}=useCart()
     const {register,handleSubmit,setValue,formState:{errors,isSubmitting}}=useForm<Shipping>({
         defaultValues:{
             firstName:"",
@@ -16,28 +16,28 @@ const ShippingForm = ()=>{
             address:"",
             city:"",
             state:"",
-            zipCode:"",
+            zipCode:0,
             email:"",
             phone:"",
         },
     })
 
     useEffect(()=>{
-        setValue('firstName',guestShipping.firstName)
-        setValue('lastName',guestShipping.lastName)
-        setValue('address',guestShipping.address)
-        setValue('city',guestShipping.city)
-        setValue('state',guestShipping.state)
-        setValue('zipCode',guestShipping.zipCode)
-        setValue('email',guestShipping.email)
-        setValue('phone',guestShipping.phone)
+        setValue('firstName',shippingDetails.firstName)
+        setValue('lastName',shippingDetails.lastName)
+        setValue('address',shippingDetails.address)
+        setValue('city',shippingDetails.city)
+        setValue('state',shippingDetails.state)
+        setValue('zipCode',shippingDetails.zipCode)
+        setValue('email',shippingDetails.email)
+        setValue('phone',shippingDetails.phone)
 
 
-    },[setValue,guestShipping])
+    },[setValue,shippingDetails])
 
     const onSubmit:SubmitHandler<Shipping>=async(form)=>{
         saveShippingAddress(form)
-        router.push('/checkout/payment')
+        router.push('/checkout/place-order')
     }
 
     const Input = ({ name, label, register, errors, required }: { name: string, label:string, register: any, errors: any, required?: boolean }) => (
@@ -98,4 +98,4 @@ return(
 )
 
 }
-export default ShippingForm
+export default GuestShippingForm

@@ -2,7 +2,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { CartItem } from "../../../../types"
+import { CartItem } from "@/types"
 import useCart from "../hooks/useCart";
 import toast, { Toaster } from "react-hot-toast";
 
@@ -11,7 +11,6 @@ export default function AddToCartButton({item}:{item:CartItem}){
    const {increase,itemCount}=useCart()
    const [message,setMessage]=useState(false)
    const notify = () => toast(
-
     <div className="grid grid-cols-2 gap-2">
       <Link href={'/product/'+item.slug}>
       <Image src={'http:'+item.image} 

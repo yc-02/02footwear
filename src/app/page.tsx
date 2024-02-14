@@ -1,43 +1,31 @@
 import Link from "next/link"
 import Image from "next/image"
+import { HomeImages } from "@/types"
 
 
-type trendingUrl={
-  fields:{
-    file:{
-      url:string
-    }
+
+
+
+
+export default async function HomePage(){
+
+
+  async function getData():Promise<HomeImages> {
+    const contentful = require('contentful')
+    const client = contentful.createClient({
+    space: process.env.CONTENTFUL_SPACE_ID,
+    accessToken:process.env.CONTENTFUL_ACCESS_KEY
+    })
+    const entries = await client.getEntries({content_type:'homeHero'})
+
+    return entries.items[0].fields
   }
-}
+  const data = await getData()
 
-
-type trending={
-  fields:{
-    file:{
-      details:{
-        image:{
-          width:number,
-          height:number
-        }
-      }
-    }
-  }
-}
-
-
-const contentful = require('contentful')
-const client = contentful.createClient({
-  space: process.env.CONTENTFUL_SPACE_ID,
-  accessToken:process.env.CONTENTFUL_ACCESS_KEY
-})
-
-export default async function HomePage() {
-
-  const entries = await client.getEntries({content_type:'homeHero'})
-  const hero=entries.items[0].fields.hero.fields.file.details.image
-  const heroUrl = entries.items[0].fields.hero.fields.file.url
-  const trendingUrl=entries.items[0].fields.trending.map((image:trendingUrl)=>image.fields.file.url)
-  const trending=entries.items[0].fields.trending.map((image:trending)=>image.fields.file.details.image)
+   const hero=data.hero.fields.file.details.image
+   const heroUrl = data.hero.fields.file.url
+   const trendingUrl=data.trending.map((image)=>image.fields.file.url)
+   const trending=data.trending.map((image)=>image.fields.file.details.image)
 
   return (
     <div className="flex flex-col">

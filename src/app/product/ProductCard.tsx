@@ -1,16 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Products } from "../../../types";
+import { Products } from "@/types";
   
-  interface ProductCardProps {
-    product: Products;
-  }
 
-export default function ProductCard({product}:ProductCardProps) {
+export default function ProductCard({product}:{product:Products}) {
   const imageWH=product.fields.image[0].fields.file.details.image
-  console.log(imageWH)
   const imageUrl = product.fields.image[0].fields.file.url;
-  console.log(imageUrl);
+
   return (
     <div>
       <div>

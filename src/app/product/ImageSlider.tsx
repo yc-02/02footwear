@@ -1,22 +1,11 @@
 "use client"
 import { useState } from "react"
 import Image from "next/image"
-
-type ImageSliderProps ={
-    image:{
-        url:string,
-        details:{
-            image:{
-                width:number,
-                height:number
-            }
-        }
-    }[]
-}
+import { ImageProps} from "@/types"
 
 
 
-export default function ImageSlider({image}:ImageSliderProps) {
+export default function ImageSlider({image}:ImageProps) {
 
     const [imageIndex,setImageindex]=useState(0)
     function showPrevImage(){

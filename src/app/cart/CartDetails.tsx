@@ -1,20 +1,25 @@
 "use client"
 import { useRouter } from "next/navigation";
-import CartItems from "./CartItems";
-import useCart from "../components/hooks/useCart";
 import { useEffect, useState } from "react";
+import CartItems from "./CartItems";
+import useCart from "@/app/components/hooks/useCart";
+
 
 
 
 export default function CartDetails() {
   const router=useRouter()
-  const {itemCount,subTotal,shippingFee}=useCart()
+  const {itemCount,subTotal,shippingFee,totalPrice}=useCart()
   const [disable,setDisable]=useState(false)
   useEffect(()=>{
     if(subTotal===0){
       setDisable(true)
+    }else{
+      setDisable(false)
     }
   },[subTotal])
+ console.log(subTotal)
+
  
 
   return (
@@ -34,7 +39,7 @@ export default function CartDetails() {
     
         <h1 className="flex justify-between">Subtotal: <span>${subTotal}</span></h1>
         <p className="flex justify-between">Shipping & Handlings: <span>${shippingFee}</span></p>
-        <p className="flex justify-between border-t-2">Total <span>${subTotal+shippingFee}</span></p>
+        <p className="flex justify-between border-t-2">Total <span>${totalPrice}</span></p>
         <button className="bg-slate-800 text-slate-50 p-2 rounded-2xl hover:bg-slate-600" 
         onClick={()=>router.push('/checkout')} 
         disabled={disable}>

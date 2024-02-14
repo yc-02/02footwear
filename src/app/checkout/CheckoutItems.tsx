@@ -1,15 +1,15 @@
 "use client"
 import Image from "next/image"
-import useCart from "../components/hooks/useCart"
+import useCart from "@/app/components/hooks/useCart"
 import Link from "next/link"
 
 
 export const CheckoutItems = () => {
-    const {items,subTotal,shippingFee}=useCart()
+    const {items,subTotal,shippingFee,totalPrice}=useCart()
   return (
     <div>
         {items.map((item)=>
-            <div key={item.uuid} className="flex gap-10 py-10">
+            <div key={item.size} className="flex gap-10 py-10">
                 <Link href={'/product/'+item.slug}>
                 <Image src={'http:'+item.image} 
                 width={100}
@@ -31,7 +31,7 @@ export const CheckoutItems = () => {
             <h1 className="flex justify-between">Subtotal: <span>${subTotal}</span></h1>
             <p className="flex justify-between">Shipping & Handlings: <span>${shippingFee}</span></p>
             <hr />
-            <p className="flex justify-between">Order Total <span>${subTotal+shippingFee}</span></p>
+            <p className="flex justify-between">Order Total <span>${totalPrice}</span></p>
             </div>
     </div>
   )

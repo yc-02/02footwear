@@ -1,18 +1,16 @@
 "use client"
 import Link from "next/link"
 import Image from "next/image"
-import useCart from "../components/hooks/useCart"
+import useCart from "@/app/components/hooks/useCart"
 
 
 
 export default function CartItems() {
-
   const {items,increase,decrease,deleteItem}=useCart()
-
   return (
     <div>
         {items.map((item)=>
-            <div key={item.uuid} className="flex gap-10 py-10">
+            <div key={item.id} className="flex gap-10 py-10">
                 <Link href={'/product/'+item.slug}>
                 <Image src={'http:'+item.image} 
                 width={150}

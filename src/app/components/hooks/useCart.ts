@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
-import { CartItem, Shipping } from '../../../../types'
+import { CartItem, Shipping } from '@/types'
 
 
 
@@ -10,8 +10,8 @@ type CartState = {
     subTotal:number;
     shippingFee:number;
     itemCount:number;
-    paymentMethod:string;
-    guestShipping:Shipping
+    shippingDetails:Shipping;
+    totalPrice:number
   };
   
 
@@ -20,17 +20,18 @@ type CartState = {
       subTotal:0,
       shippingFee:0,
       itemCount:0,
-      paymentMethod:"",
-      guestShipping:{
+      shippingDetails:{
         firstName:"",
         lastName:"",
         address:"",
         city:"",
         state:"",
-        zipCode:"",
+        zipCode:0,
         email:"",
         phone:"",
+        userId:"",
       },
+      totalPrice:0,
   }
 
 
@@ -39,14 +40,14 @@ type CartState = {
   }));
 
   export default function useCart(){
-    const {items,subTotal,shippingFee,itemCount,guestShipping,paymentMethod}=CartStore()
+    const {items,subTotal,shippingFee,itemCount,totalPrice,shippingDetails}=CartStore()
     return{
         items,
         subTotal,
         shippingFee,
         itemCount,
-        guestShipping,
-        paymentMethod,
+        totalPrice,
+        shippingDetails,
         increase: (item:CartItem)=>{
             const exist = items.find((e)=>e.slug === item.slug && e.size ===item.size)
             if (exist) {
@@ -54,7 +55,14 @@ type CartState = {
             } else {
                 items.push({ ...item, qty: 1 }); // Add a new item with qty property set to 1
             }
-            CartStore.setState({items,subTotal:calcPrice(items).subTotal, itemCount:calcPrice(items).itemCount})
+            CartStore.setState({
+                items,
+                subTotal:calcPrice(items).subTotal, 
+                shippingFee:calcPrice(items).shippingFee,
+                itemCount:calcPrice(items).itemCount,
+                totalPrice:calcPrice(items).totalPrice
+
+            })
         },
         decrease:(item:CartItem)=>{
             const exist=items.find((e)=>e.slug === item.slug && e.size ===item.size)
@@ -62,26 +70,50 @@ type CartState = {
                 if (exist.qty === 1) {
                     // If the quantity is 1, remove the item from the cart
                     const updatedItems=items.filter((e) => !(e.slug === item.slug && e.size === item.size));
-                    CartStore.setState({items:updatedItems,subTotal:calcPrice(updatedItems).subTotal, itemCount:calcPrice(updatedItems).itemCount,shippingFee:calcPrice(updatedItems).shippingFee})
+                    CartStore.setState({
+                        items:updatedItems,
+                        subTotal:calcPrice(updatedItems).subTotal, 
+                        itemCount:calcPrice(updatedItems).itemCount,
+                        shippingFee:calcPrice(updatedItems).shippingFee,
+                        totalPrice:calcPrice(updatedItems).totalPrice
+                    })
         
                 } else {
                     // If the quantity is greater than 1, decrement the quantity
                     exist.qty--
-                    CartStore.setState({items,subTotal:calcPrice(items).subTotal, itemCount:calcPrice(items).itemCount,shippingFee:calcPrice(items).shippingFee})
+                    CartStore.setState({
+                        items,
+                        subTotal:calcPrice(items).subTotal, 
+                        itemCount:calcPrice(items).itemCount,
+                        shippingFee:calcPrice(items).shippingFee,
+                        totalPrice:calcPrice(items).totalPrice
+                    })
                 }
         },
         deleteItem:(item:CartItem)=>{
             const exist=items.find((e)=>e.slug === item.slug && e.size ===item.size)
             if(exist){
                 const updatedItems=items.filter((e) => !(e.slug === item.slug && e.size === item.size));
-                CartStore.setState({items:updatedItems,subTotal:calcPrice(updatedItems).subTotal, itemCount:calcPrice(updatedItems).itemCount,shippingFee:calcPrice(updatedItems).shippingFee})
+                CartStore.setState({
+                    items:updatedItems,
+                    subTotal:calcPrice(updatedItems).subTotal, 
+                    itemCount:calcPrice(updatedItems).itemCount,
+                    shippingFee:calcPrice(updatedItems).shippingFee,
+                    totalPrice:calcPrice(updatedItems).totalPrice,
+                })
             }
         },
-        saveShippingAddress:(guestShipping:Shipping)=>{
-            CartStore.setState({guestShipping})
+        saveShippingAddress:(shippingDetails:Shipping)=>{
+            CartStore.setState({shippingDetails})
         },
-        savePaymentMethod:(paymentMethod:string)=>{
-            CartStore.setState({paymentMethod})
+        clear:()=>{
+            CartStore.setState({
+                items: [],
+                subTotal:0,
+                shippingFee:0,
+                itemCount:0,
+                totalPrice:0,
+            })
         }
     }
 }
@@ -90,6 +122,7 @@ const calcPrice=(items:CartItem[])=>{
     const subTotal = items.reduce((total,i)=>total+i.price*i.qty,0)
     const itemCount = items.reduce((total,i)=>total+i.qty,0)
     const shippingFee = subTotal>200?0:7
+    const totalPrice = subTotal+shippingFee
     return {
-        subTotal, itemCount,shippingFee}
+        subTotal, itemCount,shippingFee,totalPrice}
 }

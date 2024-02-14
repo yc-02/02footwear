@@ -1,34 +1,20 @@
 "use client"
-import { Products } from "../../../types"
+import {Products } from "../../../types"
 import ImageSlider from "@/app/product/ImageSlider"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
-import AddToCartButton from "../components/buttons/AddToCartButton";
+import AddToCartButton from "../../components/buttons/AddToCartButton";
 import { useState } from "react";
-import { v4 as uuidv4 } from 'uuid';
 
 
 
-
-interface Props{
-    product:Products,
-    image:{
-        url:string,
-        details:{
-            image:{
-                width:number,
-                height:number
-            }
-        }
-    }[]
-  }
-  type Size={
+type Size={
     size:string
   }
 
-const ProductDetails:React.FC<Props>=({image,product})=>{
+const ProductDetails=({product}:{product:Products})=>{
+
 //select size
 const [selectedSize,setSelectedSize]=useState<Size>()
-
 
 
 const productToCart = {
@@ -38,11 +24,10 @@ const productToCart = {
   image:product.fields.image[0].fields.file.url,
   price:product.fields.price,
   size:selectedSize?.size,
-  uuid:uuidv4()
+  id:product.sys.id,
 };
 
-
-
+const image=product.fields.image.map((image)=>image.fields.file)
 
 
   return (

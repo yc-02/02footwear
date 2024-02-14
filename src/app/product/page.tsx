@@ -1,5 +1,5 @@
 import ProductCard from "./ProductCard"
-import { Products } from "../../../types"
+import { Products } from "@/types"
 
 
 
