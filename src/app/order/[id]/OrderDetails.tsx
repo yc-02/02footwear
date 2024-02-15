@@ -12,7 +12,7 @@ export default function OrderDetails({orderId}:{orderId:string}) {
   useEffect(()=>{
     const getData = async()=>{
       const supabase = createClient()
-      const {data,error}=await supabase.from("delivery_details").select().eq('id',orderId).single()
+      const {data,error}=await supabase.from("footwear_delivery_details").select().eq('id',orderId).single()
       if(!data){
         throw new Error(error?.message)
       }else{

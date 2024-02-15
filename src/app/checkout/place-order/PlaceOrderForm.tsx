@@ -23,7 +23,7 @@ export const PlaceOrderForm =()=>{
     const handleSubmit = async(e:FormEvent)=>{
         e.preventDefault()
         const{data:{user}}=await supabase.auth.getUser()
-        const {data,error}=await supabase.from('delivery_details').insert(
+        const {data,error}=await supabase.from('footwear_delivery_details').insert(
             {
                 items:Array.from(items),
                 shipping_details:shipping_details,

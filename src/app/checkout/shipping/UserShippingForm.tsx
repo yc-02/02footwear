@@ -11,22 +11,20 @@ import useCart from "@/app/components/hooks/useCart";
 export default function UserShippingForm({user,data}:{user:User,data:UserShippingOption[]|null}) {
   const router = useRouter()
   const {shipping_details}=useCart()
-  const [disable,setDisable]=useState(false)
-
 
   const SubmitHandler=(e:FormEvent)=>{
     e.preventDefault()
     router.push('/checkout/place-order')
   }
-
-  useEffect(()=>{
-    if(!shipping_details.address){
-      setDisable(true)
-     }else{
-       setDisable(false)
-     }
-   
-  },[shipping_details])
+ const [disable,setDisable] = useState<boolean>(false)
+ useEffect(()=>{
+  if(shipping_details.address===""){
+    setDisable(true)
+   }else{
+    setDisable(false)
+   }
+ },[shipping_details])
+ 
 
   return (
     <div>
@@ -38,6 +36,7 @@ export default function UserShippingForm({user,data}:{user:User,data:UserShippin
         type="submit" 
         className="bg-slate-800 text-slate-50 rounded-xl hover:bg-slate-600 p-1 my-5 w-20 m-auto">
         Continue</button>
+        {disable&&<p className="text-center text-pink-800">* Please select an address to continue.</p>}
         </form>
     </div>
   )

@@ -11,6 +11,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   return (
   <div className="md:grid grid-cols-3">
     <div className="col-span-1">

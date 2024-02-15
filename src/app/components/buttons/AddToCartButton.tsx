@@ -10,7 +10,17 @@ import toast, { Toaster } from "react-hot-toast";
 export default function AddToCartButton({item}:{item:CartItem}){
    const {increase,items_count}=useCart()
    const [message,setMessage]=useState(false)
-   const notify = () => toast(
+
+   const notify=()=>toast((t) => (
+    <div className="flex flex-col">
+      <button
+      onClick={() => toast.dismiss(t.id)}
+      className='flex justify-end'
+      >
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
+      </svg>
+      </button>
     <div className="grid grid-cols-2 gap-2">
       <Link href={'/product/'+item.slug}>
       <Image src={'http:'+item.image} 
@@ -18,6 +28,7 @@ export default function AddToCartButton({item}:{item:CartItem}){
       height={100}
       alt={item.name}/>
       </Link>
+
       <div className="flex flex-col justify-between text-left gap-2">
       <p className="font-bold">{item.name}</p>
       <p>{item.size}</p>
@@ -28,8 +39,8 @@ export default function AddToCartButton({item}:{item:CartItem}){
       </div>
       </div>
     </div>
-   );
-
+    </div>
+  ))
  
    const addToCartHandler=()=>{
     if(item.size===undefined){
@@ -50,7 +61,7 @@ export default function AddToCartButton({item}:{item:CartItem}){
   <button onClick={addToCartHandler} disabled={message} className="bg-slate-800 text-slate-50 p-2 rounded-2xl hover:bg-slate-600 w-full" >
     Add to Cart
   </button>
-  {message && <p className="text-sm text-pink-800 text-center pt-2">Please select a size</p>}
+  {message && <p className="text-sm text-pink-800 text-center pt-2">Please select a size.</p>}
   <Toaster position="top-right"/>
   </div>
   )

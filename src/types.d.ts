@@ -126,3 +126,14 @@ export type UserShippingOption ={
   zip_code:string
 }
 
+type UserLiked={
+  created_at:Date
+  id:number
+  product_id:string
+  user_id:string
+  product_title:string
+  product_slug:string
+  product_url:string
+  product_price:number
+  product_size:string[]
+}
