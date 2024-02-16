@@ -12,7 +12,7 @@ const cookieStore = cookies()
 const supabase = createClient(cookieStore)
 
 
-export async function login(formData: FormData) {
+export async function signin(formData: FormData) {
 
   const data = {
     email: formData.get('email') as string,

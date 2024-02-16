@@ -1,8 +1,11 @@
-import OrderDetails from "./OrderDetails"
+import FetchOrder from "./FetchOrder"
 
 
 export default function page({params}:{params:{id:string}}) {
+
   return (
-    <OrderDetails orderId={params.id}/>
+    <div>
+    <FetchOrder orderId={params.id}/>
+    </div>
   )
 }

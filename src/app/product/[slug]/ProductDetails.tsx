@@ -6,7 +6,7 @@ import AddToCartButton from "@/app/components/buttons/AddToCartButton";
 import { useState } from "react";
 import { createClient } from "@/utils/supabase/client";
 import { useRouter } from "next/navigation";
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import Link from "next/link";
 
 

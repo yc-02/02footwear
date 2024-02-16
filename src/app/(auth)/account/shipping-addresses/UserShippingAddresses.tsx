@@ -8,8 +8,6 @@ import { useRouter } from 'next/navigation';
 
 
 
-
-
 export default function UserShippingAddress({user,data}:{user:User,data:UserShippingOption[]|null}) {
 
   const {saveShippingAddress,shipping_details}=useCart()

@@ -8,7 +8,7 @@ export default async function PurchasedPage() {
   const cookieStore = cookies()
   const supabase = createClient(cookieStore)
   const {data:{user}}= await supabase.auth.getUser()
-  const {data,error}=await supabase.from('footwear_delivery_details').select().eq('user_id',user?.id).order('created_at', { ascending: false })
+  const {data,error}=await supabase.from('footwear_order_details').select().eq('user_id',user?.id).order('created_at', { ascending: false })
 
   if(!user){
     redirect('/')

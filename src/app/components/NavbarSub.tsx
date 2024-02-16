@@ -5,8 +5,8 @@ import { cookies } from 'next/headers'
 import { createClient } from '@/utils/supabase/server'
 //Navbar
 import { NavCartIcon } from "./NavCartIcon"
-import NavHamAuth from "./NavHamAuth"
-import NavHamGuest from "./ NavHamGuest"
+import NavHam from "./NavHam"
+
 
 
 
@@ -46,7 +46,7 @@ export default async function NavbarSub() {
         </svg>
         </Link>
         <NavCartIcon/>
-        {user?<NavHamAuth/>:<NavHamGuest/>}
+        <NavHam user={user}/>
         </div>
       </div>
     </div>

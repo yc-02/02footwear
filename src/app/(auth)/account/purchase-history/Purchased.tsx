@@ -1,18 +1,13 @@
 "use client"
-
 import { Order } from '@/types'
 import Image from 'next/image'
 import Link from 'next/link'
 
 
 export default function Purchased({data}:{data:Order[]|null}) {
-
-
-
  
   return (
-    <div className='flex flex-col gap-3'>
-    
+    <div className='flex flex-col gap-3'>   
         {data?.map((o)=>(
             <div key={o.id} className='flex flex-col md:grid grid-cols-3 gap-5 p-10 items-center'>
               <Image src={"http:"+o.items[0].image} height={200} width={200} alt={o.items[0].name}/>

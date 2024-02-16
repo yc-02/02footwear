@@ -23,7 +23,7 @@ export const PlaceOrderForm =()=>{
     const handleSubmit = async(e:FormEvent)=>{
         e.preventDefault()
         const{data:{user}}=await supabase.auth.getUser()
-        const {data,error}=await supabase.from('footwear_delivery_details').insert(
+        const {data,error}=await supabase.from('footwear_order_details').insert(
             {
                 items:Array.from(items),
                 shipping_details:shipping_details,
@@ -38,9 +38,12 @@ export const PlaceOrderForm =()=>{
 
             }).select()
             if (data && data.length>0){
-                const id = data[0].id;
-                console.log(id)
-                router.push(`/order/${id}`)
+                const id = data[0].id
+                if(user){
+                    router.push(`/order/${id}`)
+                }else{
+                    router.push(`/order/${id}?email=${shipping_details.email}`)
+                }
                 clear()
 
             }else{

@@ -2,6 +2,7 @@ import Link from "next/link"
 import { cookies } from 'next/headers'
 import { createClient } from '@/utils/supabase/server'
 import SignoutButton from "./buttons/SignoutButton"
+import NavbarTopHelpIcon from "./NavbarTopHelpIcon"
 
 export default async function NavbarTop(){
     const cookieStore=cookies()
@@ -13,6 +14,7 @@ export default async function NavbarTop(){
         <div className="flex justify-between mx-auto text-sm py-1 px-2 bg-slate-50">
             <Link href="/">02 Footwear</Link>
             <div className="hidden md:flex gap-5 items-center">
+                <NavbarTopHelpIcon/>
                 {user?
                 (<>
                 <p className="">Hello,{user.user_metadata.first_name}</p>

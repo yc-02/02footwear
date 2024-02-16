@@ -2,12 +2,13 @@
 import Link from "next/link"
 import { useState} from "react"
 import SignoutButton from "./buttons/SignoutButton"
+import { User } from "@supabase/supabase-js"
 
 
 
 
 
-export default function NavHamAuth() {
+export default function NavHamAuth({user}:{user:User|null}) {
     const [open,setOpen]=useState(false)
 
     const toggle =()=>{
@@ -30,12 +31,21 @@ export default function NavHamAuth() {
               <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
           </svg>
           </div>
-          <div className="flex flex-col items-start gap-5">
-          <Link href="/product" className="cursor-pointer hover:text-slate-500" onClick={toggle}>Women</Link>
-          <Link href="/product" className="cursor-pointer hover:text-slate-500" onClick={toggle}>Men</Link>
-          <Link href="/product" className="cursor-pointer hover:text-slate-500" onClick={toggle}>Sales</Link>
-          <SignoutButton/>
-          </div>
+            <div className="flex flex-col items-start gap-5">
+            <Link href="/product" className="cursor-pointer hover:text-slate-500" onClick={toggle}>Women</Link>
+            <Link href="/product" className="cursor-pointer hover:text-slate-500" onClick={toggle}>Men</Link>
+            <Link href="/product" className="cursor-pointer hover:text-slate-500" onClick={toggle}>Sales</Link>
+            </div>
+            <br />
+            <div className="flex flex-col items-start gap-2">
+            <Link href="/order" className="text-sm hover:bg-slate-100 p-1 rounded">Order status</Link>
+            {user ? <SignoutButton/> :(
+              <>
+            <Link href="/signin" onClick={toggle} className="text-sm hover:bg-slate-100 p-1 rounded">Sign in</Link>
+            <Link href="/signup" onClick={toggle} className="text-sm hover:bg-slate-100 p-1 rounded">Sign up</Link>
+              </>
+            )}
+            </div>
           </div>
         </div>
     </div>

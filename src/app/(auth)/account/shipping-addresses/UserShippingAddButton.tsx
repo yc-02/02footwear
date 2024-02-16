@@ -13,6 +13,7 @@ const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   <div>
     <Popover
       isOpen={isPopoverOpen}
+      onClickOutside={() => setIsPopoverOpen(false)}
       transform={{}}
       transformMode='relative'
       content={

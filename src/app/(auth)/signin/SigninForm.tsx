@@ -1,5 +1,5 @@
 "use client"
-import { login } from '@/app/(auth)/actions'
+import { signin } from '@/app/(auth)/actions'
 import { useFormStatus } from 'react-dom'
 
 export default function SigninForm() {
@@ -12,7 +12,7 @@ export default function SigninForm() {
       <input className="border border-slate-500 p-1 rounded"id="email" name="email" type="email" required />
       <label htmlFor="password">Password:</label>
       <input className="border border-slate-500 p-1 rounded" id="password" name="password" type="password" required />
-      <button className="bg-slate-800 text-slate-50 p-1 rounded cursor-pointer" type="submit" disabled={pending} formAction={login}>
+      <button className="bg-slate-800 text-slate-50 p-1 rounded cursor-pointer" type="submit" disabled={pending} formAction={signin}>
       {pending && <span>...</span>}
       {!pending && <span>Sign in</span>}
   </button>
