@@ -4,7 +4,6 @@ import Image from "next/image"
 import useCart from "@/app/components/hooks/useCart"
 
 
-
 export default function CartItems() {
   const {items,increase,decrease,deleteItem}=useCart()
   return (

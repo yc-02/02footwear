@@ -6,6 +6,7 @@ import { createClient } from '@/utils/supabase/server'
 //Navbar
 import { NavCartIcon } from "./NavCartIcon"
 import NavHam from "./NavHam"
+import SearchBar from "../SearchBar"
 
 
 
@@ -27,7 +28,7 @@ export default async function NavbarSub() {
           <Link href="/product" className="cursor-pointer group-hover:border-b-2 border-slate-900 hidden md:flex">Sales</Link>
         <Link href="/" className="md:hidden">02 Footwear</Link>
         </div>
-        <div className="flex cursor-pointer gap-5" id="burger">
+        <div className="flex cursor-pointer gap-5 items-center">
         {/* usericon */}
         {user && 
         <Link href="/account">
@@ -36,9 +37,8 @@ export default async function NavbarSub() {
         </svg>
         </Link>
         }
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-            <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-        </svg>
+        {/* searchbar */}
+        <SearchBar/>
         {/* likeicon */}
         <Link href='/wish-list'>
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">

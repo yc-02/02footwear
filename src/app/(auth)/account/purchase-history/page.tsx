@@ -3,6 +3,11 @@ import Purchased from './Purchased'
 import { createClient } from '@/utils/supabase/server'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
+import { Metadata } from 'next'
+
+export const metadata:Metadata={
+  title:"Purchase History"
+}
 
 export default async function PurchasedPage() {
   const cookieStore = cookies()

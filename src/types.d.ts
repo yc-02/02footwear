@@ -21,6 +21,7 @@ interface Products{
         }
       }[],
       size:string[]
+      tags:string[]
     }
   }[]
 

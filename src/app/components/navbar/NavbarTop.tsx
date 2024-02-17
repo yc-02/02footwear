@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { cookies } from 'next/headers'
 import { createClient } from '@/utils/supabase/server'
-import SignoutButton from "./buttons/SignoutButton"
+import SignoutButton from "../buttons/SignoutButton"
 import NavbarTopHelpIcon from "./NavbarTopHelpIcon"
 
 export default async function NavbarTop(){

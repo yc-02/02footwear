@@ -4,7 +4,7 @@ import { CheckoutItems } from "../CheckoutItems";
 import CheckoutSteps from "@/app/components/CheckoutSteps";
 
 export const metadata:Metadata={
-  title:"Payment"
+  title:"Place Order"
 }
 
 export default async function ShippingPage() {

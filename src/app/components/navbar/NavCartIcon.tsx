@@ -1,6 +1,6 @@
 "use client"
 import Link from "next/link"
-import useCart from "./hooks/useCart"
+import useCart from "../hooks/useCart"
 
 export const NavCartIcon=()=>{
     const {items_count}=useCart()

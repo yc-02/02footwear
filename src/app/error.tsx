@@ -1,4 +1,9 @@
 "use client"
+import { Metadata } from "next"
+
+export const metadata:Metadata={
+  title:"Error"
+}
 
 export default function error({ error, reset }:{error:{message:string},reset:()=>void}) {
   return (

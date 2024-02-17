@@ -1,8 +1,12 @@
-
 import { cookies } from 'next/headers'
 import { createClient } from '@/utils/supabase/server'
 import { redirect} from "next/navigation"
 import ProfileForm from "./ProfileForm"
+import { Metadata } from 'next'
+
+export const metadata:Metadata={
+  title:"Profile"
+}
 
 export default async function DashboardPage() {
 

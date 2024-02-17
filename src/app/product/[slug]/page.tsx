@@ -2,17 +2,29 @@ import { createClient } from "@/utils/supabase/server"
 import { Products } from "../../../types"
 import ProductDetails from "@/app/product/[slug]/ProductDetails"
 import { cookies } from "next/headers"
+import { Metadata } from "next"
 interface Entries{
   items:Products[]
 }
 
+const contentful = require('contentful')
+const client = contentful.createClient({
+space: process.env.CONTENTFUL_SPACE_ID,
+accessToken:process.env.CONTENTFUL_ACCESS_KEY
+})
+
+export async function generateMetadata({params}:{params:{slug:string}}) {
+  const entries:Entries = await client.getEntries({
+    content_type:'product',
+    'fields.slug':params.slug
+  })
+  return {
+    title: `${entries.items[0].fields.slug || 'Product not Found'}`
+  }
+}
+
 export default async function Detailpage({params}:{params:{slug:string}}) {
   //contentful
-  const contentful = require('contentful')
-  const client = contentful.createClient({
-  space: process.env.CONTENTFUL_SPACE_ID,
-  accessToken:process.env.CONTENTFUL_ACCESS_KEY
-  })
   const entries:Entries = await client.getEntries({
     content_type:'product',
     'fields.slug':params.slug
@@ -28,7 +40,7 @@ export default async function Detailpage({params}:{params:{slug:string}}) {
   const LikesCount =data?.filter((like)=>like.product_id === product.sys.id).length
 
   return (
-<div>
+<div className="bg-slate-50 p-5">
   <ProductDetails product={product} userLiked={userLiked} likesCount={LikesCount}/>
 </div>
   )

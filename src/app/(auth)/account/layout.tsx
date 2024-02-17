@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import AccountNav from "../../components/AccountNav";
+import AccountNav from "../../components/navbar/AccountNav";
 
 
 export const metadata: Metadata = {

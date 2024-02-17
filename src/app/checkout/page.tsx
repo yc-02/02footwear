@@ -6,7 +6,7 @@ import { createClient } from '@/utils/supabase/server'
 import { redirect } from 'next/navigation'
 
 export const metadata:Metadata={
-  title:"Checkout"
+  title:"Check out"
 }
 
 export default async function CheckoutPage() {

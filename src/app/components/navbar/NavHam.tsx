@@ -1,7 +1,7 @@
 "use client"
 import Link from "next/link"
 import { useState} from "react"
-import SignoutButton from "./buttons/SignoutButton"
+import SignoutButton from "../buttons/SignoutButton"
 import { User } from "@supabase/supabase-js"
 
 

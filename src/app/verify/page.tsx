@@ -1,3 +1,9 @@
+import { Metadata } from "next"
+
+export const metadata:Metadata={
+  title:"Verity"
+}
+
 export default function Verify() {
     return (
       <main className="text-center bg-slate-50 p-20">

@@ -2,13 +2,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { HomeImages } from "@/types"
 
-
-
-
-
-
 export default async function HomePage(){
-
 
   async function getData():Promise<HomeImages> {
     const contentful = require('contentful')

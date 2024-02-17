@@ -2,10 +2,6 @@ import { createClient } from "@/utils/supabase/server"
 import { cookies } from "next/headers"
 import { NextRequest} from "next/server"
 
-
-
-
-
 export async function GET(request:NextRequest,{params}:{params:{id:string}}) {
     const cookieStore =cookies()
     const supabase = createClient(cookieStore)

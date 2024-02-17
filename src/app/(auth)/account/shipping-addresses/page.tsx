@@ -3,9 +3,11 @@ import UserShippingAddButton from"./UserShippingAddButton"
 import { createClient } from '@/utils/supabase/server'
 import { cookies } from "next/headers";
 import { redirect} from "next/navigation"
+import { Metadata } from "next";
 
-
-
+export const metadata:Metadata={
+  title:"Shipping Addresses"
+}
 
 export default async function ShippingAddressesPage() {
   const cookieStore = cookies()

@@ -5,8 +5,6 @@ import CartItems from "./CartItems";
 import useCart from "@/app/components/hooks/useCart";
 
 
-
-
 export default function CartDetails() {
   const router=useRouter()
   const {items_count,sub_total,shipping_fee,total_price}=useCart()
