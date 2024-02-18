@@ -20,7 +20,7 @@ export default async function NavbarSub() {
 
   return (
     <div className="py-5">
-      <div className="flex justify-between px-2">
+      <div className="flex justify-between px-2 items-baseline">
         <div className="flex gap-10">
       <Link href="/" className="hidden md:flex"><Image src={icon} width={30} height={30} alt="icon"/></Link>
           <Link href="/product" className="cursor-pointer group-hover:border-b-2 border-slate-900 hidden md:flex">Women</Link>
@@ -29,6 +29,8 @@ export default async function NavbarSub() {
         <Link href="/" className="md:hidden">02 Footwear</Link>
         </div>
         <div className="flex cursor-pointer gap-5 items-center">
+        {/* searchbar */}
+        <SearchBar/>
         {/* usericon */}
         {user && 
         <Link href="/account">
@@ -37,8 +39,6 @@ export default async function NavbarSub() {
         </svg>
         </Link>
         }
-        {/* searchbar */}
-        <SearchBar/>
         {/* likeicon */}
         <Link href='/wish-list'>
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">

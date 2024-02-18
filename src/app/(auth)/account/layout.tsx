@@ -17,7 +17,7 @@ export default function RootLayout({
     <div className="col-span-1">
     <AccountNav/>
     </div>
-    <div className="col-span-2">
+    <div className="col-span-2 md:p-10">
     {children}
     </div>
   </div>

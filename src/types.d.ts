@@ -1,6 +1,7 @@
 interface Products{
     sys:{
       id:string
+      createdAt:string
     }
     fields:{
       title:string,

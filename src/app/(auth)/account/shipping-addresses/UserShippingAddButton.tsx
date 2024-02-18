@@ -14,11 +14,11 @@ const [isPopoverOpen, setIsPopoverOpen] = useState(false);
     <Popover
       isOpen={isPopoverOpen}
       onClickOutside={() => setIsPopoverOpen(false)}
-      transform={{}}
+      transform={{top:10}}
       transformMode='relative'
       content={
     <div>
-      <div className="flex flex-col gap-5 bg-slate-50 rounded text-start p-10">
+      <div className="flex flex-col gap-5 bg-slate-50 rounded text-start py-5 px-10">
         <button
           onClick={()=>setIsPopoverOpen(!isPopoverOpen)}
           className='flex justify-end'

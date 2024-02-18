@@ -42,13 +42,10 @@ console.log(shipping_details)
 
 
 
-  return (
-
-      
-      <div className='flex flex-col gap-3 md:items-center'>
+  return (      
+      <div className='flex flex-col gap-3 justify-between'>
       {data?.map((a)=>(
-        <>
-        <div key={a.id} className='md:w-3/4 p-10 flex justify-between'>
+        <div key={a.id} className='p-10 flex gap-10 shadow'>
               <div className='flex gap-5'>
                 <input
                 className='cursor-pointer'
@@ -79,8 +76,6 @@ console.log(shipping_details)
               </button>
               </div>
           </div>
-          <hr className='border border-slate-500 w-3/4 m-auto'/>
-          </>
       ))}
       </div>
 
