@@ -4,11 +4,14 @@ import { useState } from "react"
 import useFilter from "../components/hooks/useFilter"
 import { ChevronDownIcon,ChevronUpIcon  } from "@heroicons/react/24/outline"
 
-export default function Filter({size}:{size:string[][]}) {
 
-
+export default function Filter({size}:{
+    size:string[][]
+    }) {
+    
     const totalSize=size.flat()
-    let uniqueSize = totalSize.reduce((acc :string[],curr :string)=>acc.includes(curr)?acc:[...acc,curr],[]).sort()
+    let uniqueSize = totalSize.reduce((acc :string[],curr :string)=>acc.includes(curr)?acc:[...acc,curr],[]).sort((a,b)=>parseInt(a)-parseInt(b))
+    
     const {setSize,removeSize,selectedsize}=useFilter()
 
 
@@ -19,6 +22,7 @@ export default function Filter({size}:{size:string[][]}) {
             setSize(size)
         }
     }
+
     const [display, setDisplay]=useState<boolean>(true)
 
 

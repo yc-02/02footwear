@@ -5,7 +5,7 @@ export const metadata:Metadata={
   title:"Error"
 }
 
-export default function error({ error, reset }:{error:{message:string},reset:()=>void}) {
+export default function Error({ error, reset }:{error:{message:string},reset:()=>void}) {
   return (
     <main className="pt-10 text-center">
       <h2 className="text-4xl">Oh No!</h2>

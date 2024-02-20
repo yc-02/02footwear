@@ -1,6 +1,11 @@
-import Sort from "@/app/product/Sort";
 import { Products } from "@/types";
 import ProductsPage from "../ProductsPage";
+import { Metadata } from "next";
+
+export const metadata:Metadata={
+  title:"Women's product"
+}
+
 
 
 const ProductData =async():Promise<Products[]>=>{

@@ -23,6 +23,9 @@ export default function useFilter(){
           const sizeToRemove = size
           const newSizes = selectedsize.filter(size=>size!==sizeToRemove)
           FilterStore.setState({selectedsize:newSizes})
+        },
+        reset:()=>{
+          FilterStore.setState({selectedsize:[]})
         }
     }
  

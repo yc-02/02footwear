@@ -18,7 +18,7 @@ export default async function WishList() {
   }
   const data = await getData()
   const wishList = data as UserLiked[]
-  if(wishList.length===0){
+  if(wishList?.length===0){
     return (
       <div>
         <p>No Favorites</p>

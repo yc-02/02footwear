@@ -1,9 +1,9 @@
 "use client"
 import { Products } from "@/types";
 import ProductCard from "./ProductCard"
-import { useSearchParams} from "next/navigation";
+import {useSearchParams} from "next/navigation";
 import Sort from "./Sort";
-import { Suspense } from "react";
+import { Suspense} from "react";
 import Filter from "./Filter";
 import useFilter from "../components/hooks/useFilter";
 import FilterRemoveButtons from "./FilterRemoveButtons";
@@ -14,30 +14,46 @@ export default function ProductsPage({data}:{data:Products[]}) {
    const searchParams = useSearchParams()
    const search = searchParams.get('search')?.toLowerCase()
    const sort = searchParams.get('sort')
+
    const {selectedsize} =useFilter()
+
+
 
   
    let filteredProduct = data
-
-  //filter by size
-   const sizes = filteredProduct.map(p=>p.fields.size)
-   if(selectedsize.length!==0){
-     filteredProduct = data.filter(product=>selectedsize.some(size=>product.fields.size.includes(size)))
-   }
-
-  //search from all products
+//search from all products
    if(search){
     filteredProduct = data.filter(product => product.fields.tags.some(tag=>tag.toLowerCase().includes(search)))
   }
 
+//filter by size
+   const sizes = filteredProduct.map(p=>p.fields.size)
+   if(selectedsize.length!==0){
+     filteredProduct = data.filter(product=>selectedsize.some(size=>product.fields.size.includes(size)))
+   }
+//search and filter
+   if(selectedsize.length!=0 && search){
+    const searchedProducts = data.filter(product => product.fields.tags.some(tag=>tag.toLowerCase().includes(search)))
+    filteredProduct = searchedProducts.filter(product=>selectedsize.some(size=>product.fields.size.includes(size)))
+   }
 
 
-  //sort products
-  let displayProduct = filteredProduct
-  sort === "lowtohigh"? displayProduct = filteredProduct.sort((a, b) => a.fields.price - b.fields.price) : filteredProduct
-  sort === "hightolow" ? displayProduct = filteredProduct.sort((a, b) => b.fields.price - a.fields.price) : filteredProduct
-  sort === "newest" ? displayProduct = filteredProduct.sort((a,b)=> new Date(b.sys.createdAt).getTime() - new Date(a.sys.createdAt).getTime()) : filteredProduct
+//sort products
+    let displayProduct = filteredProduct
 
+  if(sort){
+    if(sort === "lowtohigh"){
+      displayProduct = filteredProduct.sort((a, b) => a.fields.price - b.fields.price)
+    } else if(sort === "hightolow"){
+      displayProduct = filteredProduct.sort((a, b) => b.fields.price - a.fields.price)
+    } else if(sort === "newest"){
+      displayProduct = filteredProduct.sort((a,b)=> new Date(b.sys.createdAt).getTime() - new Date(a.sys.createdAt).getTime())
+    }
+  }
+
+
+
+ 
 
   if(displayProduct.length === 0){
     return (
@@ -56,7 +72,7 @@ export default function ProductsPage({data}:{data:Products[]}) {
   return (
     <>
     <div className="flex justify-end">
-      <Sort/>
+      <Sort search={search}/>
     </div>
     <div className="grid grid-cols-5">
       <div className="hidden md:grid col-span-1">

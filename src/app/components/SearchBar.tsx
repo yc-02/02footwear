@@ -10,7 +10,7 @@ export default function SearchBar() {
     function handleSubmit(e:any) {
         e.preventDefault()
         router.push(`/product?search=${search}`)
-      
+        setSearch("")
       }
 
 console.log(search)
@@ -20,6 +20,7 @@ console.log(search)
         <input 
         className='shadow border border-slate-200 p-1 rounded w-36 md:w-auto'
         type='text'
+        value={search}
         onChange={(e)=>setSearch(e.target.value)}/>
         <button className='flex items-center'>   
         <MagnifyingGlassIcon className='w-6 h-6'/>

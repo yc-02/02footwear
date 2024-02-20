@@ -30,7 +30,7 @@ export default function ImageSlider({image}:ImageProps) {
   return (
     <div className="flex flex-col md:flex-row gap-2">
         <div className="hidden md:flex flex-col gap-2 w-full h-full">
-        {image.map((item,index)=>
+        {image?.map((item,index)=>
         <Image className="rounded-md cursor-pointer object-cover" src={'http:'+item.url} width={item.details.image.width} height={item.details.image.height} alt="" key={index} onClick={()=>setImageindex(index)}/>
         )}
         </div>

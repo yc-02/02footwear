@@ -1,13 +1,16 @@
 "use client"
 
 import { usePathname, useRouter} from "next/navigation"
-export default function Sort() {
+export default function Sort({search}:{search:string|undefined}) {
     const router = useRouter()
     const pathname = usePathname()
     
     const handleSortChange = (term:string) => {
-      router.replace(`${pathname}?sort=${term.toString()}`)
-      console.log(term)
+      if(search){
+        router.replace(`${pathname}?search=${search}&sort=${term.toString()}`)
+      }else{
+        router.replace(`${pathname}?sort=${term.toString()}`)
+      }
       }
 
 
