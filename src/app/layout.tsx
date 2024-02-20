@@ -23,7 +23,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <div className="flex flex-col justify-between">
           <div>
-        <nav className="sticky z-20 top-0 inset-x-0 bg-white">
+        <nav className="md:sticky relative z-20 top-0 inset-x-0 bg-white">
           <NavbarTop/>
           <NavbarSub/>
         </nav>

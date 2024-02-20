@@ -38,7 +38,6 @@ export default function UserShippingAddress({user,data}:{user:User,data:UserShip
     }
   }
 
-console.log(shipping_details)
 
 
 

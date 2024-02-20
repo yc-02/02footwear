@@ -31,7 +31,9 @@ export default async function NavbarSub() {
         </div>
         <div className="flex cursor-pointer gap-5 items-center">
         {/* searchbar */}
+        <div className="hidden md:block">
         <SearchBar/>
+        </div>
         {/* usericon */}
         {user && 
         <Link href="/account">
@@ -45,6 +47,9 @@ export default async function NavbarSub() {
         <NavCartIcon/>
         <NavHam user={user}/>
         </div>
+      </div>
+      <div className="md:hidden flex justify-end px-2">
+      <SearchBar/>
       </div>
     </div>
   )

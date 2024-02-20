@@ -13,12 +13,11 @@ export default function SearchBar() {
         setSearch("")
       }
 
-console.log(search)
   return (
     <form onSubmit={handleSubmit}>
         <label className='flex gap-1'>
         <input 
-        className='shadow border border-slate-200 p-1 rounded w-36 md:w-auto'
+        className='shadow border border-slate-200 p-1 rounded'
         type='text'
         value={search}
         onChange={(e)=>setSearch(e.target.value)}/>

@@ -7,6 +7,7 @@ import { Suspense} from "react";
 import Filter from "./Filter";
 import useFilter from "../components/hooks/useFilter";
 import FilterRemoveButtons from "./FilterRemoveButtons";
+import FilterSortSm from "./FilterSortSm";
 
 
 
@@ -15,7 +16,7 @@ export default function ProductsPage({data}:{data:Products[]}) {
    const search = searchParams.get('search')?.toLowerCase()
    const sort = searchParams.get('sort')
 
-   const {selectedsize} =useFilter()
+   const {selectedsize,selectedBrand} =useFilter()
 
 
 
@@ -30,6 +31,11 @@ export default function ProductsPage({data}:{data:Products[]}) {
    const sizes = filteredProduct.map(p=>p.fields.size)
    if(selectedsize.length!==0){
      filteredProduct = data.filter(product=>selectedsize.some(size=>product.fields.size.includes(size)))
+   }
+//filter by brand
+    const brands = filteredProduct.map(p=>p.fields.brand)
+   if(selectedBrand.length!==0){
+    filteredProduct = data.filter(product=>selectedBrand.some(brand=>product.fields.brand.includes(brand)))
    }
 //search and filter
    if(selectedsize.length!=0 && search){
@@ -70,16 +76,19 @@ export default function ProductsPage({data}:{data:Products[]}) {
 
 
   return (
-    <>
-    <div className="flex justify-end">
+    <div className="mt-5">
+    <div className="flex justify-between md:justify-end">
+    <FilterSortSm size={sizes} brand={brands}/>
       <Sort search={search}/>
     </div>
     <div className="grid grid-cols-5">
       <div className="hidden md:grid col-span-1">
-        <Filter size={sizes}/>
+        <Filter size={sizes} brand={brands}/>
       </div>
-      <div className="col-span-4">
-       <FilterRemoveButtons/>
+      <div className="col-span-5 md:col-span-4">
+        <div className="hidden md:block">
+        <FilterRemoveButtons/>
+        </div>
         <Suspense fallback={<p>Loading...</p>}>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4 bg-slate-50 p-5">
         {displayProduct.map((p)=>(
@@ -89,6 +98,6 @@ export default function ProductsPage({data}:{data:Products[]}) {
         </Suspense>
       </div>
   </div>
-  </>
+  </div>
     );
 }

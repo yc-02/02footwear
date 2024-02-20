@@ -25,6 +25,7 @@ interface Products{
       tags:string[]
       category:string[]
       gender:string
+      brand:string
     }
   }[]
 

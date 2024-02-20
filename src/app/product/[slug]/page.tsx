@@ -2,7 +2,7 @@ import { createClient } from "@/utils/supabase/server"
 import { Products } from "../../../types"
 import ProductDetails from "@/app/product/[slug]/ProductDetails"
 import { cookies } from "next/headers"
-import { Metadata } from "next"
+import { redirect } from "next/navigation"
 interface Entries{
   items:Products[]
 }
@@ -18,6 +18,9 @@ export async function generateMetadata({params}:{params:{slug:string}}) {
     content_type:'product',
     'fields.slug':params.slug
   })
+  if(entries.items[0] === undefined){
+    redirect('/')
+  }
   return {
     title: `${entries.items[0].fields.slug || 'Product not Found'}`
   }
@@ -31,6 +34,7 @@ export default async function Detailpage({params}:{params:{slug:string}}) {
   })
 
   const product=entries.items[0]
+
   //supabase get product likes count
   const cookieStore = cookies()
   const supabase = createClient(cookieStore)

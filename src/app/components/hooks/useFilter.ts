@@ -4,18 +4,21 @@ import { create } from 'zustand'
 
 type FilterState = {
     selectedsize:string[]
+    selectedBrand:string[]
   };
   
 
 export const FilterStore = create<FilterState>()(() => ({
-    selectedsize:[]
+    selectedsize:[],
+    selectedBrand:[]
   })
   );
 
 export default function useFilter(){
-    const {selectedsize}=FilterStore()
+    const {selectedsize,selectedBrand}=FilterStore()
     return{
         selectedsize,
+        selectedBrand,
         setSize:(size:string)=>{
             FilterStore.setState({selectedsize:[...selectedsize,size]})
         },
@@ -24,8 +27,16 @@ export default function useFilter(){
           const newSizes = selectedsize.filter(size=>size!==sizeToRemove)
           FilterStore.setState({selectedsize:newSizes})
         },
+        setBrand:(brand:string)=>{
+          FilterStore.setState({selectedBrand:[...selectedBrand,brand]})
+        },
+        removeBrand:(brand:string)=>{
+          const brandToRemove = brand
+          const newBrands = selectedBrand.filter(brand=>brand!==brandToRemove)
+          FilterStore.setState({selectedBrand:newBrands})
+        },
         reset:()=>{
-          FilterStore.setState({selectedsize:[]})
+          FilterStore.setState({selectedsize:[],selectedBrand:[]})
         }
     }
  

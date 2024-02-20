@@ -91,8 +91,8 @@ const notify=()=>toast((t) => (
       </div>
       <div className="flex flex-col items-start gap-3">
         <p>{product.fields.title}</p>
-        <p>${product.fields.price}</p>
         <p className="text-sm text-slate-600">{product.fields.gender}</p>
+        <p>${product.fields.price}</p>
         <p>Select Size</p>
         <div className="grid grid-cols-4 md:grid-cols-3">
           {product.fields.size.map((size)=>
