@@ -44,7 +44,8 @@ export default function FetchOrder({data,user}:{data:Order[],user:User|null}) {
                 </Link>
                 <div className="flex flex-col justify-between text-left">
                 <p className="font-bold">{item.name}</p>
-                <p>{item.size}</p>
+                <p>{item.gender}</p>
+                <p>Size: {item.size}</p>
                 <p>QTY: {item.qty}</p>
                 <p>${item.price}</p>
                 </div>

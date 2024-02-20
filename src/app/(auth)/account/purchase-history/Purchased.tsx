@@ -18,7 +18,7 @@ export default function Purchased({data}:{data:Order[]|null}) {
               </div>
               <div className='flex items-center'>
               <Link href={`/order/${o.id}`} className='bg-slate-800 text-slate-50 rounded-lg p-1 text-center'>
-                  Purchase Detials
+                  Purchase Details
                 </Link>
               </div>
             </div>

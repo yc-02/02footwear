@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { CartItem } from "@/types"
 import useCart from "../hooks/useCart";
 import toast, { Toaster } from "react-hot-toast";
+import { XMarkIcon } from "@heroicons/react/24/outline";
 
 
 export default function AddToCartButton({item}:{item:CartItem}){
@@ -17,9 +18,7 @@ export default function AddToCartButton({item}:{item:CartItem}){
       onClick={() => toast.dismiss(t.id)}
       className='flex justify-end'
       >
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-      <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
-      </svg>
+        <XMarkIcon className="w-6 h-6"/>
       </button>
     <div className="grid grid-cols-2 gap-2">
       <Link href={'/product/'+item.slug}>
@@ -31,7 +30,8 @@ export default function AddToCartButton({item}:{item:CartItem}){
 
       <div className="flex flex-col justify-between text-left gap-2">
       <p className="font-bold">{item.name}</p>
-      <p>{item.size}</p>
+      <p className="text-sm">{item.gender}</p>
+      <p>Size: {item.size}</p>
       <p>${item.price}</p>
       <div className="flex gap-2 items-center">
       <Link href="/cart" className="border-slate-800 border p-1 rounded-2xl text-xs text-nowrap">Your Bag ({items_count+1})</Link>

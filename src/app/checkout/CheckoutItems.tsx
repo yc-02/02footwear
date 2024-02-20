@@ -18,7 +18,7 @@ export const CheckoutItems = () => {
                 </Link>
                 <div className="flex flex-col justify-between text-left">
                 <p className="font-bold">{item.name}</p>
-                <p>{item.size}</p>
+                <p>Size: {item.size}</p>
                 <div className="flex gap-3">
                 <p>QTY: {item.qty}</p>
                 <p>${item.price*item.qty}</p>

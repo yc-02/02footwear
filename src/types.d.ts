@@ -23,6 +23,8 @@ interface Products{
       }[],
       size:string[]
       tags:string[]
+      category:string[]
+      gender:string
     }
   }[]
 
@@ -82,6 +84,7 @@ export type CartItem={
   qty:number
   size:string|undefined
   slug:string
+  gender:string
 }
 
 export type Shipping={

@@ -18,23 +18,30 @@ export default async function WishList() {
   }
   const data = await getData()
   const wishList = data as UserLiked[]
-
+  if(wishList.length===0){
+    return (
+      <div>
+        <p>No Favorites</p>
+      </div>
+    )
+  }
 
 
   return (
     <div>
       <p className="text-center font-bold text-xl">My Favorites</p>
       {user?(
-      <div className="flex flex-col gap-10 py-10 items-center md:flex-row">
+      <div className="flex flex-wrap gap-10 py-10 items-baseline justify-center md:flex-row">
       {wishList.map((wish)=>(
           <div key={wish.id} className="flex flex-col relative">
             <Link href={'/product/'+wish.product_slug}>
             <Image src={'http:'+wish.product_url} 
+            className="w-full"
             width={200}
             height={200}
             alt={wish.product_title}/>
             </Link>
-            <div className="flex justify-between">
+            <div className="flex">
             <p className="font-bold">{wish.product_title}</p>
             <p>${wish.product_price}</p>
             </div>

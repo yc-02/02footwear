@@ -1,6 +1,6 @@
+import Sort from "@/app/product/Sort";
 import { Products } from "@/types";
-import ProductPage from "./ProductsPage";
-import Sort from "./Sort";
+import ProductsPage from "../ProductsPage";
 
 
 const ProductData =async():Promise<Products[]>=>{
@@ -9,19 +9,19 @@ const ProductData =async():Promise<Products[]>=>{
       space: process.env.CONTENTFUL_SPACE_ID,
       accessToken:process.env.CONTENTFUL_ACCESS_KEY
     })
-    const entries = await client.getEntries({content_type:'product'})
+    const entries = await client.getEntries({content_type:'product','fields.gender': 'Women'})
     return entries.items
 
 }
 
-export default async function page() {
+export default async function WomenProductspage() {
 
 const data = await ProductData()
 
 return(
   <div>
-    <ProductPage data={data}/>
+    <ProductsPage data={data}/>
   </div>
 )
 }
-      
+     

@@ -22,6 +22,13 @@ export default async function PurchasedPage() {
     throw new Error(error.message)
   }
 
+  if(data.length===0){
+    return(
+      <div>
+        <p>No Purchases</p>
+      </div>
+    )
+  }
   return (
     <div>
       <h1 className="text-center font-bold text-xl">Purchase History</h1>

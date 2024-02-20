@@ -3,9 +3,7 @@ import Link from "next/link"
 import { useState} from "react"
 import SignoutButton from "../buttons/SignoutButton"
 import { User } from "@supabase/supabase-js"
-
-
-
+import { Bars3Icon,XMarkIcon } from "@heroicons/react/24/outline"
 
 
 export default function NavHamAuth({user}:{user:User|null}) {
@@ -19,27 +17,23 @@ export default function NavHamAuth({user}:{user:User|null}) {
   
   return (
     <>
-    <svg onClick={toggle} className="w-6 h-6 md:hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-    <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-    </svg>
+    <Bars3Icon onClick={toggle} className="w-6 h-6 md:hidden"/>
     <div className="md:hidden">
               {/* small screen hamburger menu items */}
       <div className={`navbarSmall ${open?"grid":"hidden"}`}>
         <div className="navbarSmallContent">
           <div onClick={toggle} className="w-full flex justify-end cursor-pointer">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
-          </svg>
+          <XMarkIcon className="w-6 h-6 m-6"/>
           </div>
             <div className="flex flex-col items-start gap-5">
-            <Link href="/product" className="cursor-pointer hover:text-slate-500" onClick={toggle}>Women</Link>
-            <Link href="/product" className="cursor-pointer hover:text-slate-500" onClick={toggle}>Men</Link>
-            <Link href="/product" className="cursor-pointer hover:text-slate-500" onClick={toggle}>Sales</Link>
+            <Link href="/product/women" className="cursor-pointer hover:text-slate-500" onClick={toggle}>Women</Link>
+            <Link href="/product/men" className="cursor-pointer hover:text-slate-500" onClick={toggle}>Men</Link>
+            <Link href="#" className="cursor-pointer hover:text-slate-500" onClick={toggle}>Sales</Link>
             </div>
             <br />
             <div className="flex flex-col items-start gap-2">
-            <Link href="/order" className="text-sm hover:bg-slate-100 p-1 rounded">Order status</Link>
-            {user ? <SignoutButton/> :(
+            <Link href="/order" onClick={toggle} className="text-sm hover:bg-slate-100 p-1 rounded">Order status</Link>
+            {user ? <div onClick={toggle}><SignoutButton/></div> :(
               <>
             <Link href="/signin" onClick={toggle} className="text-sm hover:bg-slate-100 p-1 rounded">Sign in</Link>
             <Link href="/signup" onClick={toggle} className="text-sm hover:bg-slate-100 p-1 rounded">Sign up</Link>

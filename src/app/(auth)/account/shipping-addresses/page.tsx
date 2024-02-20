@@ -4,6 +4,7 @@ import { createClient } from '@/utils/supabase/server'
 import { cookies } from "next/headers";
 import { redirect} from "next/navigation"
 import { Metadata } from "next";
+import { Suspense } from "react";
 
 export const metadata:Metadata={
   title:"Shipping Addresses"
@@ -26,7 +27,9 @@ export default async function ShippingAddressesPage() {
   return (
     <div>
       <p className="text-center font-bold text-xl">Shipping Addresses</p>
+      <Suspense fallback={<p>Loading...</p>}>
       <UserShippingAddress user={user} data={data}/>
+      </Suspense>
       <UserShippingAddButton/>
     </div>
   )

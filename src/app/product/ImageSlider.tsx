@@ -2,7 +2,7 @@
 import { useState } from "react"
 import Image from "next/image"
 import { ImageProps} from "@/types"
-
+import { ChevronLeftIcon,ChevronRightIcon } from "@heroicons/react/24/outline"
 
 
 export default function ImageSlider({image}:ImageProps) {
@@ -38,14 +38,10 @@ export default function ImageSlider({image}:ImageProps) {
         <Image className="rounded-md" src={'http:'+image[imageIndex].url} width={image[imageIndex].details.image.width} height={image[imageIndex].details.image.height} alt=""/>
             <div className="absolute bottom-0 right-1">
             <button className="p-2" onClick={showPrevImage}>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 bg-slate-50 rounded-full">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
-            </svg>
+            <ChevronLeftIcon className="w-6 h-6 bg-slate-50 rounded-full"/>
             </button>
             <button className="p-2" onClick={showNextImage}>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 bg-slate-50 rounded-full">
-            <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-            </svg>
+            <ChevronRightIcon className="w-6 h-6 bg-slate-50 rounded-full"/>
             </button>
             </div>
         </div>

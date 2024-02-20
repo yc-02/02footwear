@@ -4,6 +4,7 @@ import { createClient } from "@/utils/supabase/client"
 import { User } from "@supabase/supabase-js"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
+import { PencilSquareIcon,XMarkIcon} from "@heroicons/react/24/outline"
 
 
 
@@ -82,18 +83,14 @@ export default function ProfileForm({user}:{user:User}) {
             <button type="submit"  className='bg-slate-600 rounded-xl text-slate-50  text-sm text-center w-14 mt-1'>Save</button>
         </form>
             <button onClick={()=>setEditEmail(false)}>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
-            </svg>
+            <XMarkIcon className="w-6 h-6"/>
             </button>
         </div>):
         (
         <div className="flex justify-between">
             <p>Email: {user?.email}</p>
             <button onClick={()=>setEditEmail(true)}>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                <path strokeLinecap="round" strokeLinejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
-            </svg>
+            <PencilSquareIcon className="w-6 h-6"/>
             </button>
         </div>)}
         {editFirstName?
@@ -110,18 +107,14 @@ export default function ProfileForm({user}:{user:User}) {
             <button type="submit" className='bg-slate-600 rounded-xl text-slate-50  text-sm text-center w-14 mt-1'>Save</button>
         </form>
             <button onClick={()=>setEditFirstName(false)}>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
-            </svg>
+            <XMarkIcon className="w-6 h-6"/>
             </button>
         </div>):
         (
         <div className="flex justify-between">
             <p>First Name: {user?.user_metadata.first_name}</p>
             <button onClick={()=>setEditFirstName(true)}>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                <path strokeLinecap="round" strokeLinejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
-            </svg>
+            <PencilSquareIcon className="w-6 h-6"/>
             </button>
         </div>)}
         {editLastName?
@@ -138,18 +131,14 @@ export default function ProfileForm({user}:{user:User}) {
             <button type="submit" className='bg-slate-600 rounded-xl text-slate-50  text-sm text-center w-14 mt-1'>Save</button>
         </form>
             <button onClick={()=>setEditLastName(false)}>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
-            </svg>
+            <XMarkIcon className="w-6 h-6"/>
             </button>
         </div>):
         (
         <div className="flex justify-between">
             <p>Last Name: {user?.user_metadata.last_name}</p>
             <button onClick={()=>setEditLastName(true)}>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                <path strokeLinecap="round" strokeLinejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
-            </svg>
+            <PencilSquareIcon className="w-6 h-6"/>
             </button>
         </div>)}
         {editPassword?
@@ -166,18 +155,14 @@ export default function ProfileForm({user}:{user:User}) {
             <button type="submit"  className='bg-slate-600 rounded-xl text-slate-50  text-sm text-center w-14 mt-1'>Save</button>
         </form>
             <button onClick={()=>setEditPassword(false)}>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
-            </svg>
+            <XMarkIcon className="w-6 h-6"/>
             </button>
         </div>):
         (
         <div className="flex justify-between">
             <p>Password: ****** </p>
             <button onClick={()=>setEditPassword(true)}>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                <path strokeLinecap="round" strokeLinejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
-            </svg>
+            <PencilSquareIcon className="w-6 h-6"/>
             </button>
         </div>)}
 
