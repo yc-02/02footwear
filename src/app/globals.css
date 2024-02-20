@@ -15,6 +15,6 @@
    
     }
     .accountNav{
-        @apply flex m-5 justify-between items-baseline border-b-2 md:h-screen md:w-1/2 md:flex-col md:gap-10 md:border-r-2 md:border-y-0 md:justify-normal text-sm
+        @apply flex m-5 justify-between gap-7 items-baseline border-b-2 md:h-screen md:w-1/2 md:flex-col md:gap-10 md:border-r-2 md:border-y-0 md:justify-normal text-sm
     }
 }

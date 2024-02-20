@@ -86,7 +86,7 @@ const notify=()=>toast((t) => (
   return (
     <div className="flex flex-col">
     <div className="flex flex-col md:grid grid-cols-2 gap-5">
-      <div className="w-96 h-96 md:h-full md:w-full">
+      <div className="md:h-full md:w-full">
         <ImageSlider image={image}/>
       </div>
       <div className="flex flex-col items-start gap-3">

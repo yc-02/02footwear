@@ -80,7 +80,7 @@ export default function ProfileForm({user}:{user:User}) {
             defaultValue={user?.email} name="email" 
             onChange={(e) => setEmail(e.target.value)}/>
         </label>
-            <button type="submit"  className='bg-slate-600 rounded-xl text-slate-50  text-sm text-center w-14 mt-1'>Save</button>
+            <button type="submit"  className='bg-slate-600 rounded-xl text-slate-50 text-xs text-center p-1'>Save</button>
         </form>
             <button onClick={()=>setEditEmail(false)}>
             <XMarkIcon className="w-6 h-6"/>
@@ -104,7 +104,7 @@ export default function ProfileForm({user}:{user:User}) {
             defaultValue={user?.user_metadata.first_name} name="first_name" 
             onChange={(e) => setFirstName(e.target.value)}/>
         </label>
-            <button type="submit" className='bg-slate-600 rounded-xl text-slate-50  text-sm text-center w-14 mt-1'>Save</button>
+            <button type="submit" className='bg-slate-600 rounded-xl text-slate-50 text-xs text-center p-1'>Save</button>
         </form>
             <button onClick={()=>setEditFirstName(false)}>
             <XMarkIcon className="w-6 h-6"/>
@@ -128,7 +128,7 @@ export default function ProfileForm({user}:{user:User}) {
             defaultValue={user?.user_metadata.last_name} name="last_name" 
             onChange={(e) => setLastName(e.target.value)}/>
         </label>
-            <button type="submit" className='bg-slate-600 rounded-xl text-slate-50  text-sm text-center w-14 mt-1'>Save</button>
+            <button type="submit" className='bg-slate-600 rounded-xl text-slate-50 text-xs text-center p-1'>Save</button>
         </form>
             <button onClick={()=>setEditLastName(false)}>
             <XMarkIcon className="w-6 h-6"/>
@@ -152,7 +152,7 @@ export default function ProfileForm({user}:{user:User}) {
             defaultValue='' name="password" 
             onChange={(e) => setPassword(e.target.value)}/>
         </label>
-            <button type="submit"  className='bg-slate-600 rounded-xl text-slate-50  text-sm text-center w-14 mt-1'>Save</button>
+            <button type="submit"  className='bg-slate-600 rounded-xl text-slate-50 text-xs text-center p-1'>Save</button>
         </form>
             <button onClick={()=>setEditPassword(false)}>
             <XMarkIcon className="w-6 h-6"/>

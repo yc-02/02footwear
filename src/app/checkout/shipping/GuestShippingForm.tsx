@@ -53,7 +53,7 @@ const GuestShippingForm = ()=>{
     );
     
 return(
-    <div>
+    <div className="px-10">
         <form onSubmit={handleSubmit(onSubmit)} >
             <div  className="grid grid-cols-2 gap-2 text-start">
         

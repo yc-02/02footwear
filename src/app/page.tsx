@@ -23,7 +23,7 @@ export default async function HomePage(){
 
   return (
     <div className="flex flex-col">
-    <div className="w-full bg-blue-500 flex justify-center">
+    <div className="w-full bg-blue-500 flex h-60 md:h-80 justify-center">
       <Image src={'http:'+ heroUrl} width={hero.width} height={hero.height} alt="image" className="object-cover"/>
     </div>
     <p className="text-2xl p-10">Trending</p>

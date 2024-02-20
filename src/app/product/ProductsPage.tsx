@@ -77,7 +77,7 @@ export default function ProductsPage({data}:{data:Products[]}) {
 
   return (
     <div className="mt-5">
-    <div className="flex justify-between md:justify-end">
+    <div className="flex justify-between md:justify-end py-5 px-1">
     <FilterSortSm size={sizes} brand={brands}/>
       <Sort search={search}/>
     </div>
