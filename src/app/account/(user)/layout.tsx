@@ -13,13 +13,9 @@ export default function RootLayout({
 }>) {
 
   return (
-  <div className="md:grid grid-cols-3">
-    <div className="col-span-1">
+  <div className="flex flex-col justify-center items-center gap-10">
     <NavbarAccount/>
-    </div>
-    <div className="col-span-2 md:p-10">
     {children}
-    </div>
   </div>
   );
 }

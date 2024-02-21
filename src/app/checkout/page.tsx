@@ -21,8 +21,8 @@ export default async function CheckoutPage() {
       <div className="flex flex-col items-center text-center gap-5 py-10">
           <p className="text-xl">Have an account?</p>
           <div className="flex gap-2">
-          <Link href="/signin" className="underline">Sign in</Link>|
-          <Link href="/signup" className="underline">Sign Up</Link>
+          <Link href="/account/signin" className="underline">Sign in</Link>|
+          <Link href="/account/signup" className="underline">Sign Up</Link>
           </div>
           <Link href="/checkout/shipping" className="underline">Check out as a guest</Link>
       </div>

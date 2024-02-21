@@ -1,5 +1,5 @@
 "use client"
-import UserShippingAddress from "@/app/(auth)/account/shipping-addresses/UserShippingAddresses";
+import UserShippingAddress from "@/app/account/(user)/shipping-addresses/UserShippingAddresses";
 import { useRouter } from "next/navigation";
 import { FormEvent, useEffect, useState } from "react";
 import { User } from '@supabase/supabase-js'

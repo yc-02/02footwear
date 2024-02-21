@@ -35,7 +35,7 @@ export default async function NavbarSub() {
         </div>
         {/* usericon */}
         {user && 
-        <Link href="/account">
+        <Link href="/account/dashboard">
         <UserCircleIcon className="w-6 h-6"/>
         </Link>
         }

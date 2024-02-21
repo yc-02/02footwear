@@ -1,15 +1,15 @@
 import React from 'react'
-import Purchased from './Purchased'
 import { createClient } from '@/utils/supabase/server'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 import { Metadata } from 'next'
+import Orders from './Orders'
 
 export const metadata:Metadata={
   title:"Purchase History"
 }
 
-export default async function PurchasedPage() {
+export default async function OrdersPage() {
   const cookieStore = cookies()
   const supabase = createClient(cookieStore)
   const {data:{user}}= await supabase.auth.getUser()
@@ -32,7 +32,7 @@ export default async function PurchasedPage() {
   return (
     <div>
       <h1 className="text-center font-bold text-xl">Purchase History</h1>
-      <Purchased data={data}/>
+      <Orders data={data}/>
     </div>
   )
 }

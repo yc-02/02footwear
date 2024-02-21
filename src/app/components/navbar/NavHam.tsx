@@ -33,8 +33,8 @@ export default function NavHamAuth({user}:{user:User|null}) {
             {user ? <div onClick={toggle}><SignoutButton/></div> :(
               <>
             <Link href="/order" onClick={toggle} className="text-sm hover:bg-slate-100 p-1 rounded">Order status</Link>
-            <Link href="/signin" onClick={toggle} className="text-sm hover:bg-slate-100 p-1 rounded">Sign in</Link>
-            <Link href="/signup" onClick={toggle} className="text-sm hover:bg-slate-100 p-1 rounded">Sign up</Link>
+            <Link href="/account/signin" onClick={toggle} className="text-sm hover:bg-slate-100 p-1 rounded">Sign in</Link>
+            <Link href="/account/signup" onClick={toggle} className="text-sm hover:bg-slate-100 p-1 rounded">Sign up</Link>
               </>
             )}
             </div>

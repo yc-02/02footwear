@@ -5,7 +5,7 @@ import { CheckoutItems } from "../CheckoutItems";
 import { createClient } from "@/utils/supabase/server";
 import { cookies } from "next/headers";
 import UserShippingForm from "./UserShippingForm";
-import UserShippingAddButton from "@/app/(auth)/account/shipping-addresses/UserShippingAddButton";
+import UserShippingAddButton from "@/app/account/(user)/shipping-addresses/UserShippingAddButton";
 
 export const metadata:Metadata={
   title:"Shipping"

@@ -23,8 +23,8 @@ export default async function NavbarTop(){
                 </>)
                 :
                 (<>
-            <Link className="cursor-pointer hover:text-slate-500" href="/signup" >Sign up</Link>
-            <Link className="cursor-pointer hover:text-slate-500" href="/signin">Sign in</Link>
+            <Link className="cursor-pointer hover:text-slate-500" href="/account/signup" >Sign up</Link>
+            <Link className="cursor-pointer hover:text-slate-500" href="/account/signin">Sign in</Link>
                 </>)
                     }
             </div>

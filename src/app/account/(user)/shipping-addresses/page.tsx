@@ -1,9 +1,9 @@
 import UserShippingAddress from "./UserShippingAddresses";
-import UserShippingAddButton from"./UserShippingAddButton"
 import { createClient } from '@/utils/supabase/server'
 import { cookies } from "next/headers";
 import { redirect} from "next/navigation"
 import { Metadata } from "next";
+import UserShippingAddButton from "./UserShippingAddButton";
 
 export const metadata:Metadata={
   title:"Shipping Addresses"

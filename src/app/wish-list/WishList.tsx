@@ -51,7 +51,7 @@ export default async function WishList() {
       </div>):(
       <div className="flex flex-col items-center p-10">
         <p>Please Sign in to see your wish list!</p>
-        <Link href='/signin' className="underline">Sign in</Link>
+        <Link href='/account/signin' className="underline">Sign in</Link>
       </div>
       )}
     </div>

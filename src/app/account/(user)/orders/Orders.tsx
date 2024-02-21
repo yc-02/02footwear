@@ -4,7 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 
-export default function Purchased({data}:{data:Order[]|null}) {
+export default function Orders({data}:{data:Order[]|null}) {
  
   return (
     <div className='flex flex-col gap-3'>   
