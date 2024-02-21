@@ -6,7 +6,7 @@ export default function FilterRemoveButtons() {
     const {removeSize,selectedsize,selectedBrand,removeBrand}=useFilter()
 
   return (
-    <div className="flex gap-3 mb-2">
+    <div className="flex gap-3 mb-2 mx-3">
         {selectedsize.map((s:string)=>(
             <div key={s} className="">
                 <button 

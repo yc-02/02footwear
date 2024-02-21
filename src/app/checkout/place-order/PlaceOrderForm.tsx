@@ -19,6 +19,9 @@ export const PlaceOrderForm =()=>{
             setDisable(true)
         }
     },[selectedPaymentMethod])
+    console.log(shipping_details)
+
+
 
     const handleSubmit = async(e:FormEvent)=>{
         e.preventDefault()
@@ -40,12 +43,11 @@ export const PlaceOrderForm =()=>{
             if (data && data.length>0){
                 const id = data[0].id
                 if(user){
-                    router.push(`/order/${id}`)
+                    router.replace(`/order/${id}`)
                 }else{
-                    router.push(`/order/${id}?email=${shipping_details.email}`)
+                    router.replace(`/order/${id}?email=${shipping_details.email}`)
                 }
                 clear()
-
             }else{
                 throw new Error(error?.message)
             }
@@ -83,6 +85,8 @@ export const PlaceOrderForm =()=>{
             <button className="bg-slate-800 text-slate-50 rounded-xl hover:bg-slate-600 p-1 my-5" disabled={disable}>Place Your Order</button>
             </div>
             </form>
+            <div>
+    </div>
         </div>
     )
 

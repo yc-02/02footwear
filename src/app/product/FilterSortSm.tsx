@@ -34,7 +34,7 @@ const [isPopoverOpen, setIsPopoverOpen] = useState(false)
       <button 
       onClick={() => setIsPopoverOpen(!isPopoverOpen)} 
       className="flex gap-3 justify-center">
-          <AdjustmentsHorizontalIcon className="w-6 h-6"/> Filter & Sort
+          <AdjustmentsHorizontalIcon className="w-6 h-6"/> Filter
       </button>
       </div>
   )

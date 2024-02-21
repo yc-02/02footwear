@@ -1,6 +1,6 @@
 "use client"
 import Link from "next/link"
-import { useState} from "react"
+import {useState} from "react"
 import SignoutButton from "../buttons/SignoutButton"
 import { User } from "@supabase/supabase-js"
 import { Bars3Icon,XMarkIcon } from "@heroicons/react/24/outline"
@@ -12,9 +12,7 @@ export default function NavHamAuth({user}:{user:User|null}) {
     const toggle =()=>{
         setOpen(!open)
     }
-  
 
-  
   return (
     <>
     <Bars3Icon onClick={toggle} className="w-6 h-6 md:hidden"/>
@@ -32,9 +30,9 @@ export default function NavHamAuth({user}:{user:User|null}) {
             </div>
             <br />
             <div className="flex flex-col items-start gap-2">
-            <Link href="/order" onClick={toggle} className="text-sm hover:bg-slate-100 p-1 rounded">Order status</Link>
             {user ? <div onClick={toggle}><SignoutButton/></div> :(
               <>
+            <Link href="/order" onClick={toggle} className="text-sm hover:bg-slate-100 p-1 rounded">Order status</Link>
             <Link href="/signin" onClick={toggle} className="text-sm hover:bg-slate-100 p-1 rounded">Sign in</Link>
             <Link href="/signup" onClick={toggle} className="text-sm hover:bg-slate-100 p-1 rounded">Sign up</Link>
               </>

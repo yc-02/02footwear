@@ -21,7 +21,7 @@ export default async function WishList() {
   if(wishList?.length===0){
     return (
       <div>
-        <p>No Favorites</p>
+        <p className="text-center">No Favorites</p>
       </div>
     )
   }

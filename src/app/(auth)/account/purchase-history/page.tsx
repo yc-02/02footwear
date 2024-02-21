@@ -25,7 +25,7 @@ export default async function PurchasedPage() {
   if(data.length===0){
     return(
       <div>
-        <p>No Purchases</p>
+        <p className='text-center'>No Purchases</p>
       </div>
     )
   }

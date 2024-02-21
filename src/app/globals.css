@@ -14,7 +14,7 @@
         @apply absolute left-0 w-full h-52 bg-white grid-cols-3 items-center text-center rounded shadow-lg
    
     }
-    .accountNav{
-        @apply flex m-5 justify-between gap-7 items-baseline border-b-2 md:h-screen md:w-1/2 md:flex-col md:gap-10 md:border-r-2 md:border-y-0 md:justify-normal text-sm
+    .NavbarAccount{
+        @apply flex m-5 items-center justify-between md:justify-start md:items-baseline border-b-2 md:h-screen md:w-1/2 md:flex-col md:gap-10 md:border-r-2 md:border-y-0 text-sm
     }
 }

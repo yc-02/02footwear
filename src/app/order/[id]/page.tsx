@@ -2,7 +2,6 @@ import { createClient } from "@/utils/supabase/server"
 import { cookies } from "next/headers"
 import { Metadata } from "next"
 import FetchOrder from "./FetchOrder"
-import { redirect } from "next/navigation"
 import { Order } from "@/types"
 
 

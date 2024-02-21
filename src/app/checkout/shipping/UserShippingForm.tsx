@@ -10,17 +10,21 @@ import useCart from "@/app/components/hooks/useCart";
 
 export default function UserShippingForm({user,data}:{user:User,data:UserShippingOption[]|null}) {
   const router = useRouter()
-  const {shipping_details}=useCart()
+  const {shipping_details,total_price,}=useCart()
 
   const SubmitHandler=(e:FormEvent)=>{
     e.preventDefault()
     router.push('/checkout/place-order')
+    if(total_price===0){
+      router.push('/')
+    }
   }
  const [disable,setDisable] = useState<boolean>(false)
  useEffect(()=>{
   if(shipping_details.address===""){
     setDisable(true)
-   }else{
+   }
+   else{
     setDisable(false)
    }
  },[shipping_details])

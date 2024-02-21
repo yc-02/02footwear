@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { QuestionMarkCircleIcon } from '@heroicons/react/24/outline';
 
 
-export default function NavbarTopHelpIcon() {
+export default function NavTopHelpIcon() {
 
 
   return (

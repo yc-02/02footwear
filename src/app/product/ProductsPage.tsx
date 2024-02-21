@@ -16,7 +16,7 @@ export default function ProductsPage({data}:{data:Products[]}) {
    const search = searchParams.get('search')?.toLowerCase()
    const sort = searchParams.get('sort')
 
-   const {selectedsize,selectedBrand} =useFilter()
+   const {selectedsize,selectedBrand,reset} =useFilter()
 
 
 
@@ -86,9 +86,7 @@ export default function ProductsPage({data}:{data:Products[]}) {
         <Filter size={sizes} brand={brands}/>
       </div>
       <div className="col-span-5 md:col-span-4">
-        <div className="hidden md:block">
         <FilterRemoveButtons/>
-        </div>
         <Suspense fallback={<p>Loading...</p>}>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4 bg-slate-50 p-5">
         {displayProduct.map((p)=>(

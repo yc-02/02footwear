@@ -9,6 +9,7 @@ import NavHam from "./NavHam"
 import SearchBar from "../SearchBar"
 //icons
 import { UserCircleIcon,HeartIcon } from "@heroicons/react/24/outline"
+import NavSubLinks from "./NavSubLinks"
 
 
 
@@ -24,13 +25,11 @@ export default async function NavbarSub() {
       <div className="flex justify-between px-2 items-baseline">
         <div className="flex gap-10">
       <Link href="/" className="hidden md:flex"><Image src={icon} width={30} height={30} alt="icon"/></Link>
-          <Link href="/product/women" className="cursor-pointer group-hover:border-b-2 border-slate-900 hidden md:flex">Women</Link>
-          <Link href="/product/men" className="cursor-pointer group-hover:border-b-2 border-slate-900 hidden md:flex" >Men</Link>
-          <Link href="#" className="cursor-pointer group-hover:border-b-2 border-slate-900 hidden md:flex">Sales</Link>
+          <NavSubLinks/>
         <Link href="/" className="md:hidden">02 Footwear</Link>
         </div>
         <div className="flex cursor-pointer gap-5 items-center">
-        {/* searchbar */}
+        {/* searchbar md screen */}
         <div className="hidden md:block">
         <SearchBar/>
         </div>
@@ -45,9 +44,11 @@ export default async function NavbarSub() {
         <HeartIcon className="w-6 h-6"/>
         </Link>
         <NavCartIcon/>
+        {/* small screen hamburger nav */}
         <NavHam user={user}/>
         </div>
       </div>
+      {/* searchbar small screen */}
       <div className="md:hidden flex justify-end px-2">
       <SearchBar/>
       </div>

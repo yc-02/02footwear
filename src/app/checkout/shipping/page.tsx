@@ -23,7 +23,7 @@ export default async function ShippingPage() {
         <div className="md:grid grid-cols-2">
 
         {user?(
-        <div className="flex flex-col gap-5 py-10">
+        <div className="flex flex-col items-center gap-5 py-10">
         <CheckoutSteps current={1}/>
         <UserShippingForm user={user} data={data}/>
         <UserShippingAddButton/>

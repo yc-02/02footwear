@@ -1,24 +1,37 @@
 "use client"
-import { Popover } from 'react-tiny-popover'
 import { AddUserAdress } from '../../actions';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 
 
 
 export default function UserShippingAddButton() {
 const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+const popoverRef = useRef<HTMLDivElement>(null)
+
+useEffect(()=>{
+  const handleClickOutside = (event:MouseEvent)=>{
+    if (popoverRef.current && !popoverRef.current.contains(event.target as Node)) {
+      setIsPopoverOpen(false);
+    }
+  }
+
+document.addEventListener('mousedown', handleClickOutside);
+
+return () => {
+  document.removeEventListener('mousedown', handleClickOutside);
+};
+}, [])
 
   return (
-  <div>
-    <Popover
-      isOpen={isPopoverOpen}
-      onClickOutside={() => setIsPopoverOpen(false)}
-      transform={{top:10}}
-      transformMode='relative'
-      content={
-    <div>
-      <div className="flex flex-col gap-5 bg-slate-50 rounded text-start py-5 px-10">
+  <div className=''>
+      <div className='flex justify-center'>
+      <button onClick={() => setIsPopoverOpen(!isPopoverOpen)} className='underline hover:text-slate-500'>
+        Add a shipping Address
+      </button>
+      </div>
+    <div className={`${isPopoverOpen? "absolute z-20 top-32 inset-x-0 flex justify-center ":"hidden"}`} ref={popoverRef}>
+      <div className="flex flex-col gap-5 bg-slate-50 rounded text-start p-10">
         <button
           onClick={()=>setIsPopoverOpen(!isPopoverOpen)}
           className='flex justify-end'
@@ -62,15 +75,7 @@ const [isPopoverOpen, setIsPopoverOpen] = useState(false);
         </div>
         </form>
       </div>
-    </div>}
-    >
-      <div className='flex justify-center'>
-      <button onClick={() => setIsPopoverOpen(!isPopoverOpen)} className='underline hover:text-slate-500'>
-        Add a shipping Address
-      </button>
-      </div>
-    </Popover>
-
+    </div>
   </div>
 
   )

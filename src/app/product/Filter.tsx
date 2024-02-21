@@ -1,8 +1,9 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import useFilter from "../components/hooks/useFilter"
 import {PlusIcon,MinusIcon} from "@heroicons/react/24/outline"
+import { usePathname } from "next/navigation"
 
 
 export default function Filter({size,brand}:{
@@ -13,7 +14,11 @@ export default function Filter({size,brand}:{
     const totalSize=size.flat()
     const uniqueSize = totalSize.reduce((acc :string[],curr :string)=>acc.includes(curr)?acc:[...acc,curr],[]).sort((a,b)=>parseInt(a)-parseInt(b))
     const uniqueBrand = brand.reduce((acc:string[],curr:string)=>acc.includes(curr)?acc:[...acc,curr],[]).sort()
-    const {setSize,removeSize,selectedsize,selectedBrand,setBrand,removeBrand}=useFilter()
+    const {setSize,removeSize,selectedsize,selectedBrand,setBrand,removeBrand,reset}=useFilter()
+    const pathname = usePathname()
+    const [showSize, setShowSize]=useState<boolean>(false)
+    const [showBrand, setShowBrand]=useState<boolean>(false)
+
 
 
     const handleSizeClick =(size:string)=>{
@@ -32,8 +37,7 @@ export default function Filter({size,brand}:{
         }
     }
 
-    const [showSize, setShowSize]=useState<boolean>(false)
-    const [showBrand, setShowBrand]=useState<boolean>(false)
+
 
 
   return (
