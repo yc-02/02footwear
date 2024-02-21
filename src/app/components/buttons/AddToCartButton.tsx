@@ -34,8 +34,15 @@ export default function AddToCartButton({item}:{item:CartItem}){
       <p>Size: {item.size}</p>
       <p>${item.price}</p>
       <div className="flex gap-2 items-center">
-      <Link href="/cart" className="border-slate-800 border p-1 rounded-2xl text-xs text-nowrap">Your Bag ({items_count+1})</Link>
-      <Link href="/checkout" className="bg-slate-800 text-slate-50 p-1 rounded-2xl hover:bg-slate-600 text-xs">Checkout</Link>
+      <Link href="/cart"
+      onClick={() => toast.dismiss(t.id)}
+      className="border-slate-800 border p-1 rounded-2xl text-xs text-nowrap"
+      >Your Bag ({items_count+1})
+      </Link>
+      <Link href="/checkout"
+       onClick={() => toast.dismiss(t.id)} 
+      className="bg-slate-800 text-slate-50 p-1 rounded-2xl hover:bg-slate-600 text-xs"
+      >Checkout</Link>
       </div>
       </div>
     </div>

@@ -78,7 +78,11 @@ const notify=()=>toast((t) => (
       </button>
       <div className="flex flex-col gap-5">
       <p>Check out your wish list <span>&#128571;</span></p>
-      <Link href="/wish-list" className="bg-slate-800 text-white rounded-lg p-1 text-center">View list</Link>
+      <Link 
+      onClick={() => toast.dismiss(t.id)} 
+      href="/wish-list" 
+      className="bg-slate-800 text-white rounded-lg p-1 text-center"
+      >View list</Link>
     </div>
   </div>
 ))
