@@ -21,7 +21,9 @@ export default async function WishList() {
   if(wishList?.length===0){
     return (
       <div>
-        <p className="text-center">No Favorites</p>
+        <p className="text-center">Items added to your wish list will be saved here.
+
+</p>
       </div>
     )
   }
@@ -29,7 +31,7 @@ export default async function WishList() {
 
   return (
     <div>
-      <p className="text-center font-bold text-xl">My Favorites</p>
+      <p className="text-center font-semibold text-xl">Wish List</p>
       {user?(
       <div className="flex flex-wrap gap-10 py-10 items-baseline justify-center md:flex-row">
       {wishList.map((wish)=>(
@@ -41,7 +43,7 @@ export default async function WishList() {
             height={200}
             alt={wish.product_title}/>
             </Link>
-            <div className="flex">
+            <div className="flex justify-between">
             <p className="font-bold">{wish.product_title}</p>
             <p>${wish.product_price}</p>
             </div>

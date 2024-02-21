@@ -2,6 +2,7 @@ import { cookies } from 'next/headers'
 import { createClient } from '@/utils/supabase/server'
 import { redirect} from "next/navigation"
 import { Metadata } from 'next'
+import WishList from '@/app/wish-list/WishList'
 
 export const metadata:Metadata={
   title:"Dashboard"

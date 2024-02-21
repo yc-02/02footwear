@@ -25,7 +25,6 @@ export default async function ShippingAddressesPage() {
 
   return (
     <div>
-      <p className="text-center font-bold text-xl">Shipping Addresses</p>
       <UserShippingAddress user={user} data={data}/>
       <UserShippingAddButton/>
     </div>

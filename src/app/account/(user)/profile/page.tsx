@@ -19,7 +19,6 @@ export default async function DashboardPage() {
 
   return (
     <div className="">
-      <h1 className="text-center font-bold text-xl">Profile</h1>
       <ProfileForm user={user}/>
     </div>
   )

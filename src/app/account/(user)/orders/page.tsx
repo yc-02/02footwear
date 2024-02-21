@@ -31,7 +31,6 @@ export default async function OrdersPage() {
   }
   return (
     <div>
-      <h1 className="text-center font-bold text-xl">Purchase History</h1>
       <Orders data={data}/>
     </div>
   )

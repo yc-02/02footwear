@@ -1,6 +1,6 @@
 "use client"
 import { createClient } from '@/utils/supabase/client'
-import { useParams, useRouter, useSearchParams } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { useState } from 'react'
 
 export default function ResetPasswordpage() {
