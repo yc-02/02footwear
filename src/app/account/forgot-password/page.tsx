@@ -1,7 +1,7 @@
 "use client"
 import { createClient } from '@/utils/supabase/client'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { useState } from 'react'
+import { FormEvent, useState } from 'react'
 
 export default function ResetPasswordpage() {
     const router = useRouter()
@@ -11,15 +11,16 @@ export default function ResetPasswordpage() {
     const redirect = searchParams.get('redirect')
     const supabase = createClient()
 
-    const handleSubmit = async()=>{
+    const handleSubmit = async(e:FormEvent)=>{
+        e.preventDefault()
         const { error } = await supabase.auth.resetPasswordForEmail(email,{
             redirectTo: `${location.origin}/account/update-password`
           })
           if(error){
             setError(error.message)
           }else{
-            router.push('/account/forgot-password?redirect=redirect')
-          }
+          router.replace('/account/forgot-password?redirect=redirect')}
+        
     }
     if(redirect && redirect ==="redirect"){
       return (
