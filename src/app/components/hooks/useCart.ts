@@ -115,7 +115,7 @@ type CartState = {
 const calcPrice=(items:CartItem[])=>{
     const subTotal = items.reduce((total,i)=>total+i.price*i.qty,0)
     const itemCount = items.reduce((total,i)=>total+i.qty,0)
-    const shippingFee = subTotal>200?0:7
+    const shippingFee = subTotal>=200?0:7
     const totalPrice = subTotal+shippingFee
     return {
         subTotal, itemCount,shippingFee,totalPrice}

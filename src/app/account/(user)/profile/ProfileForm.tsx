@@ -81,7 +81,7 @@ return () => {
 
         <div
         ref={popoverRef} 
-        className={`${editFirstName?" absolute insect-0 bg-slate-50 rouded shadow p-10 flex flex-col justify-center":"hidden"}`}>
+        className={`${editFirstName?"absolute inset-x-0 md:inset-auto bg-slate-50 rouded shadow p-10 flex flex-col justify-center":"hidden"}`}>
         <button onClick={()=>setEditFirstName(false)} className="flex justify-end">
             <XMarkIcon className="w-6 h-6"/>
         </button>
@@ -105,7 +105,7 @@ return () => {
 
         <div 
         ref={popoverRef} 
-        className={`${editLastName?" absolute insect-0 bg-slate-50 rouded shadow p-10 flex flex-col justify-center":"hidden"}`}>
+        className={`${editLastName?"absolute inset-x-0 md:inset-auto bg-slate-50 rouded shadow p-10 flex flex-col justify-center":"hidden"}`}>
         <button onClick={()=>setEditLastName(false)}  className="flex justify-end">
             <XMarkIcon className="w-6 h-6"/>
         </button>
@@ -130,7 +130,7 @@ return () => {
 
         <div
         ref={popoverRef}  
-        className={`${editPassword?" absolute insect-0 bg-slate-50 rouded shadow p-10 flex flex-col justify-center":"hidden"}`}>
+        className={`${editPassword?"absolute inset-x-0 md:inset-auto bg-slate-50 rouded shadow p-10 flex flex-col justify-center":"hidden"}`}>
         <button onClick={()=>setEditPassword(false)} className="flex justify-end">
             <XMarkIcon className="w-6 h-6"/>
             </button>

@@ -34,6 +34,7 @@ export default function CartDetails() {
     
         <h1 className="flex justify-between">Subtotal: <span>${sub_total}</span></h1>
         <p className="flex justify-between">Shipping & Handlings: <span>${shipping_fee}</span></p>
+        <p className="text-sm text-slate-500">Free shipping over $200</p>
         <p className="flex justify-between border-t-2">Total <span>${total_price}</span></p>
         <button className="bg-slate-800 text-slate-50 p-2 rounded-2xl hover:bg-slate-600" 
         onClick={()=>router.push('/checkout')} 

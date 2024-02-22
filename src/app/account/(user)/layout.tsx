@@ -3,7 +3,11 @@ import NavbarAccount from "../../components/navbar/NavbarAccount";
 
 
 export const metadata: Metadata = {
-  title: "Account",
+  title:{
+    default:"Account",
+    template:"%s | Account | 02 Footwear"
+  },
+  description: "02 Footwear Account",
 };
 
 export default function RootLayout({
