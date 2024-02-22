@@ -17,7 +17,32 @@ type Size={
   }
 
 
-const ProductDetails=({product,userLiked,likesCount}:{product:Products,userLiked:UserLiked|undefined,likesCount:number|undefined})=>{
+const ProductDetails=({product,userLiked,likesCount,itemOrdered}:{
+  product:Products,
+  userLiked:UserLiked|undefined,
+  likesCount:number|undefined,
+  itemOrdered:any[]|undefined
+
+})=>{
+
+//inventory
+const sizeQty = itemOrdered?.map(({size,qty})=>({size,qty}))
+const orderedQty = sizeQty?.reduce((acc:{ size: string; qty: number }[],curr)=>{
+  const existingItem = acc.find((item)=>item.size===curr.size)
+  if(existingItem){
+    existingItem.qty +=curr.qty
+  }else{
+    acc.push({size:curr.size,qty:curr.qty})
+  }
+  return acc
+},[])
+
+const inventoryEachSize = 4
+const outofStock = orderedQty?.filter(a=>a.qty>=inventoryEachSize)
+const outofStockSizes = outofStock?.map(a=>a.size)
+
+
+
 
 //select size
 const [selectedSize,setSelectedSize]=useState<Size>()
@@ -100,8 +125,14 @@ const notify=()=>toast((t) => (
         <p>Select Size</p>
         <div className="grid grid-cols-4 md:grid-cols-3">
           {product.fields.size.map((size)=>
-          <button className={`border border-slate-800 rounded-2xl p-2 m-2 ${selectedSize?.size===size?'bg-slate-800 text-slate-50':""}`} 
-          onClick={()=>setSelectedSize((prevSize) => (prevSize?.size === size ? undefined : {size}))} key={size}>{size}
+          <button className={`border border-slate-800 rounded-2xl p-2 m-2 
+          ${selectedSize?.size===size?'bg-slate-800 text-slate-50':""}
+          ${outofStockSizes?.includes(size)?"bg-slate-300 text-slate-400 line-through":""}`} 
+          onClick={()=>setSelectedSize((prevSize) => (prevSize?.size === size ? undefined : {size}))} 
+          key={size}
+          disabled={outofStockSizes?.includes(size)}
+          >
+            {size}
           </button>
           )}
         </div>

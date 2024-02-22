@@ -74,7 +74,7 @@ return () => {
 }, [])
 
   return (
-    <div className="flex flex-col gap-5 p-10">
+    <div className="flex flex-col gap-5 p-10 w-screen md:w-auto">
         <div>
             <p>Email: {user?.email}</p>
         </div>

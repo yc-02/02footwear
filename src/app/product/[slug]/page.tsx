@@ -39,15 +39,22 @@ export default async function Detailpage({params}:{params:{slug:string}}) {
   //supabase get product likes count
   const cookieStore = cookies()
   const supabase = createClient(cookieStore)
+  //user
   const{data:{user}}= await supabase.auth.getUser()
   const {data} = await supabase.from('footwear_wish_list').select()
+  //likes
   const userLiked = data?.find((like)=>like.user_id===user?.id && like.product_id === product.sys.id)
   const LikesCount =data?.filter((like)=>like.product_id === product.sys.id).length
+  //inventory
+  const {data:orders} = await supabase.from('footwear_order_details').select('items')
+  const itemsOrdered = orders?.flatMap(a=>a.items)
+  const itemOrdered = itemsOrdered?.filter(a=>a.slug===params.slug)
+
 
   return (
 <Suspense fallback={<p>Loading...</p>}>
 <div className="bg-slate-50 p-5">
-  <ProductDetails product={product} userLiked={userLiked} likesCount={LikesCount}/>
+  <ProductDetails product={product} userLiked={userLiked} likesCount={LikesCount} itemOrdered={itemOrdered}/>
 </div>
 </Suspense>
   )

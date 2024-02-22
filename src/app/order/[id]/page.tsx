@@ -15,6 +15,8 @@ export default async function page({params}:{params:{id:string}}) {
     const {data:{user}}=await supabase.auth.getUser()
     const {data} = await supabase.from("footwear_order_details").select().eq('id',params.id)
     const order = data as Order[]
+
+  
     return(
         <FetchOrder data={order} user={user}/>
     )

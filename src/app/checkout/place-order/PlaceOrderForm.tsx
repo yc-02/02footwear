@@ -40,6 +40,8 @@ export const PlaceOrderForm =()=>{
                 
 
             }).select()
+
+
             if (data && data.length>0){
                 const id = data[0].id
                 if(user){
