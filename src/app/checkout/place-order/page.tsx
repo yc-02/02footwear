@@ -7,7 +7,7 @@ export const metadata:Metadata={
   title:"Place Order"
 }
 
-export default async function ShippingPage() {
+export default async function PlaceOrderPage() {
   return (
     <div>
         <div className="md:grid grid-cols-2">

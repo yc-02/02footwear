@@ -3,7 +3,6 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import CartItems from "./CartItems";
 import useCart from "@/app/components/hooks/useCart";
-import { ItemStock } from "@/types";
 
 
 
@@ -11,7 +10,6 @@ export default function CartDetails() {
   const router=useRouter()
   const {items_count,sub_total,shipping_fee,total_price}=useCart()
   const [disable,setDisable]=useState(false)
-  const {items}=useCart()
 
   useEffect(()=>{
     if(sub_total===0){

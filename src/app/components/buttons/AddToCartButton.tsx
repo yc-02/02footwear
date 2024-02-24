@@ -12,6 +12,7 @@ export default function AddToCartButton({item}:{item:CartItem}){
    const {increase,items_count}=useCart()
    const [message,setMessage]=useState(false)
 
+
    const notify=()=>toast((t) => (
     <div className="flex flex-col">
       <button
