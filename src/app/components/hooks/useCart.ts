@@ -107,7 +107,23 @@ type CartState = {
             CartStore.setState({shipping_details})
         },
         clear:()=>{
-            CartStore.setState(initialState)
+            CartStore.setState({
+                items:[],
+                sub_total:0,
+                shipping_fee:0,
+                items_count:0,
+                shipping_details:{
+                  firstName:"",
+                  lastName:"",
+                  address:"",
+                  city:"",
+                  state:"",
+                  zipCode:"",
+                  email:"",
+                  phone:"",
+                  userId:"",
+                },
+                total_price:0,})
         },
     }
 }
