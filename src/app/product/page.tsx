@@ -2,6 +2,7 @@ import { Products } from "@/types";
 import ProductPage from "./ProductsPage";
 import { Metadata } from "next";
 
+
 export const metadata:Metadata={
   title:"Products"
 }
@@ -22,6 +23,8 @@ const ProductData =async():Promise<Products[]>=>{
 export default async function page() {
 
 const data = await ProductData()
+
+
 
 return(
   <div>

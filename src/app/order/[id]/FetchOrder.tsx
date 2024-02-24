@@ -1,4 +1,5 @@
 "use client"
+import useCart from '@/app/components/hooks/useCart';
 import { Order } from '@/types';
 import { User } from '@supabase/supabase-js';
 import Image from 'next/image';
@@ -16,6 +17,7 @@ export default function FetchOrder({data,user}:{data:Order[],user:User|null}) {
     const order = filteredOrder.length===0? router.push('/order') : filteredOrder[0]
     const orderdDate= new Date(`${order?.created_at}`)
     const dateString= orderdDate.toLocaleDateString()
+
       
     return (
     <div className="flex flex-col gap-2 justify-start p-10">

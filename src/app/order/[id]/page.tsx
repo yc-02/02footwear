@@ -3,6 +3,7 @@ import { cookies } from "next/headers"
 import { Metadata } from "next"
 import FetchOrder from "./FetchOrder"
 import { Order } from "@/types"
+import { Suspense } from "react"
 
 
 export const metadata:Metadata={
@@ -18,7 +19,9 @@ export default async function page({params}:{params:{id:string}}) {
 
   
     return(
+        <Suspense fallback={<p>Loading...</p>}>
         <FetchOrder data={order} user={user}/>
+        </Suspense>
     )
    
 }

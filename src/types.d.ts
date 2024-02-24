@@ -86,6 +86,7 @@ export type CartItem={
   size:string|undefined
   slug:string
   gender:string
+  brand:string
 }
 
 export type Shipping={
@@ -142,4 +143,14 @@ type UserLiked={
   product_url:string
   product_price:number
   product_size:string[]
+}
+
+export type ItemStock={
+  created_at:Date
+  id:number
+  item_id:string
+  item_name:string
+  item_size:string
+  item_size_inventory:number
+  item_slug:string
 }

@@ -6,6 +6,7 @@ import Link from "next/link"
 
 export const CheckoutItems = () => {
     const {items,sub_total,shipping_fee,total_price}=useCart()
+    console.log(items)
   return (
     <div>
         {items.map((item)=>

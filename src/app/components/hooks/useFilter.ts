@@ -10,7 +10,7 @@ type FilterState = {
 
 export const FilterStore = create<FilterState>()(() => ({
     selectedsize:[],
-    selectedBrand:[]
+    selectedBrand:[],
   })
   );
 
@@ -38,6 +38,7 @@ export default function useFilter(){
         reset:()=>{
           FilterStore.setState({selectedsize:[],selectedBrand:[]})
         }
+
     }
  
   }

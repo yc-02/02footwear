@@ -1,5 +1,5 @@
 "use client"
-import useCart from "@/app/components/hooks/useCart"
+import useCart, { CartStore } from "@/app/components/hooks/useCart"
 import { FormEvent, useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import { createClient } from "@/utils/supabase/client"
@@ -15,11 +15,16 @@ export const PlaceOrderForm =()=>{
     useEffect(()=>{
         if(selectedPaymentMethod){
             setDisable(false)
-        }else {
+        }
+        else {
             setDisable(true)
         }
     },[selectedPaymentMethod])
-    console.log(shipping_details)
+
+console.log(items)
+
+
+
 
 
 
@@ -41,18 +46,40 @@ export const PlaceOrderForm =()=>{
 
             }).select()
 
+            
+            if(data&&data.length>0){
+                items.map(async(item)=>{
+                    const {error} = await supabase.from('footwear_ordered_items').insert({
+                        order_id:data[0].id,
+                        item_id:item.id,
+                        item_brand:item.brand,
+                        item_price:item.price,
+                        item_gender:item.gender,
+                        item_size:item.size,
+                        item_size_qty:item.qty,
+                        item_slug:item.slug
+
+                    })
+                if(error){
+                    throw new Error(error.message)
+                }
+                })
+
+            }
 
             if (data && data.length>0){
                 const id = data[0].id
                 if(user){
+                    clear()
                     router.replace(`/order/${id}`)
                 }else{
+                    clear()
                     router.replace(`/order/${id}?email=${shipping_details.email}`)
                 }
-                clear()
             }else{
                 throw new Error(error?.message)
             }
+
     }
 
     return( 

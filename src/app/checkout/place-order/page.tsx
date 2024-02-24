@@ -2,7 +2,6 @@ import { Metadata } from "next";
 import { PlaceOrderForm } from "./PlaceOrderForm";
 import { CheckoutItems } from "../CheckoutItems";
 import CheckoutSteps from "@/app/components/CheckoutSteps";
-import { Suspense } from "react";
 
 export const metadata:Metadata={
   title:"Place Order"

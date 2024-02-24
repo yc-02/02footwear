@@ -1,5 +1,5 @@
 "use client"
-import {Products, UserLiked } from "@/types"
+import {ItemStock, Products, UserLiked } from "@/types"
 import ImageSlider from "@/app/product/ImageSlider"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import AddToCartButton from "@/app/components/buttons/AddToCartButton";
@@ -17,31 +17,18 @@ type Size={
   }
 
 
-const ProductDetails=({product,userLiked,likesCount,itemOrdered}:{
+const ProductDetails=({product,userLiked,likesCount,itemsStock}:{
   product:Products,
   userLiked:UserLiked|undefined,
   likesCount:number|undefined,
-  itemOrdered:any[]|undefined
+  itemsStock:ItemStock[]|null
+
 
 })=>{
 
+
 //inventory
-const sizeQty = itemOrdered?.map(({size,qty})=>({size,qty}))
-const orderedQty = sizeQty?.reduce((acc:{ size: string; qty: number }[],curr)=>{
-  const existingItem = acc.find((item)=>item.size===curr.size)
-  if(existingItem){
-    existingItem.qty +=curr.qty
-  }else{
-    acc.push({size:curr.size,qty:curr.qty})
-  }
-  return acc
-},[])
-
-const inventoryEachSize = 4
-const outofStock = orderedQty?.filter(a=>a.qty>=inventoryEachSize)
-const outofStockSizes = outofStock?.map(a=>a.size)
-
-
+const outOfStock = itemsStock?.filter(item=>item.item_size_inventory===0)
 
 
 //select size
@@ -56,7 +43,8 @@ const productToCart = {
   price:product.fields.price,
   size:selectedSize?.size,
   id:product.sys.id,
-  gender:product.fields.gender
+  gender:product.fields.gender,
+  brand:product.fields.brand
 };
 
 const image=product.fields.image.map((image)=>image.fields.file)
@@ -127,10 +115,11 @@ const notify=()=>toast((t) => (
           {product.fields.size.map((size)=>
           <button className={`border border-slate-800 rounded-2xl p-2 m-2 
           ${selectedSize?.size===size?'bg-slate-800 text-slate-50':""}
-          ${outofStockSizes?.includes(size)?"bg-slate-300 text-slate-400 line-through":""}`} 
+          ${outOfStock?.some(i=>i.item_size === size)?"bg-slate-300 text-slate-400 line-through":""}
+          `} 
           onClick={()=>setSelectedSize((prevSize) => (prevSize?.size === size ? undefined : {size}))} 
           key={size}
-          disabled={outofStockSizes?.includes(size)}
+          disabled={outOfStock?.some(i=>i.item_size === size)}
           >
             {size}
           </button>

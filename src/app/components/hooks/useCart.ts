@@ -16,7 +16,7 @@ type CartState = {
   
 
   const initialState:CartState={
-      items: [],
+      items:[],
       sub_total:0,
       shipping_fee:0,
       items_count:0,

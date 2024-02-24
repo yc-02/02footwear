@@ -46,15 +46,16 @@ export default async function Detailpage({params}:{params:{slug:string}}) {
   const userLiked = data?.find((like)=>like.user_id===user?.id && like.product_id === product.sys.id)
   const LikesCount =data?.filter((like)=>like.product_id === product.sys.id).length
   //inventory
-  const {data:orders} = await supabase.from('footwear_order_details').select('items')
-  const itemsOrdered = orders?.flatMap(a=>a.items)
-  const itemOrdered = itemsOrdered?.filter(a=>a.slug===params.slug)
+  const {data:itemsStock} = await supabase.from('footwear_items_stock').select().eq('item_slug',params.slug)
+  
+
+
 
 
   return (
 <Suspense fallback={<p>Loading...</p>}>
 <div className="bg-slate-50 p-5">
-  <ProductDetails product={product} userLiked={userLiked} likesCount={LikesCount} itemOrdered={itemOrdered}/>
+  <ProductDetails product={product} userLiked={userLiked} likesCount={LikesCount} itemsStock={itemsStock}/>
 </div>
 </Suspense>
   )

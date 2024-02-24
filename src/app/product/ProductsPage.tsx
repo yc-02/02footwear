@@ -1,47 +1,75 @@
 "use client"
-import { Products } from "@/types";
+import { ItemStock, Products } from "@/types";
 import ProductCard from "./ProductCard"
-import {useSearchParams} from "next/navigation";
+import {usePathname, useRouter, useSearchParams} from "next/navigation";
 import Sort from "./Sort";
-import { Suspense} from "react";
+import { Suspense, useEffect, useState} from "react";
 import Filter from "./Filter";
 import useFilter from "../components/hooks/useFilter";
 import FilterRemoveButtons from "./FilterRemoveButtons";
 import FilterSortSm from "./FilterSortSm";
+import { createClient } from "@/utils/supabase/client";
 
 
 
-export default function ProductsPage({data}:{data:Products[]}) {
+export default function ProductsPage({data}:{
+  data:Products[]
+}) {
    const searchParams = useSearchParams()
    const search = searchParams.get('search')?.toLowerCase()
    const sort = searchParams.get('sort')
-
+  //  const pathname = usePathname()
    const {selectedsize,selectedBrand,reset} =useFilter()
+   const [itemsStock,setItemsStock]=useState<ItemStock[]|null>()
+   const supabase = createClient()
+   const getItemsStock = async()=>{
+    const {data,error} = await supabase.from('footwear_items_stock').select()
+    setItemsStock(data)
+    if (error){
+      throw new Error(error.message)
+    }
+   }
+   useEffect(()=>{
+    getItemsStock()
+   // eslint-disable-next-line react-hooks/exhaustive-deps
+   },[])
+ 
 
 
-
-  
    let filteredProduct = data
 //search from all products
    if(search){
-    filteredProduct = data.filter(product => product.fields.tags.some(tag=>tag.toLowerCase().includes(search)))
+    filteredProduct = filteredProduct.filter(product => product.fields.tags.some(tag=>tag.toLowerCase().includes(search)))
   }
-
+     
+//filter options
+   const sizes = filteredProduct.map(p=>p.fields.size)  
 //filter by size
-   const sizes = filteredProduct.map(p=>p.fields.size)
+//get outofstockitems by size
+   const outOfStockItems= itemsStock?.filter(item=>item.item_size_inventory===0)
+   const outOfStockProducts = outOfStockItems?.filter(item=>selectedsize.some(size=>item.item_size.includes(size)))
+
+  
    if(selectedsize.length!==0){
-     filteredProduct = data.filter(product=>selectedsize.some(size=>product.fields.size.includes(size)))
+     filteredProduct = filteredProduct.filter(product=>selectedsize.some(size=>product.fields.size.includes(size)))
+     if(outOfStockProducts?.length!==0){
+      filteredProduct = filteredProduct.filter(product=>outOfStockProducts?.some(item=>product.sys.id !== item.item_id))
+     }
    }
+
+//filter options
+const brands = filteredProduct.map(p=>p.fields.brand)
+
 //filter by brand
-    const brands = filteredProduct.map(p=>p.fields.brand)
+  
    if(selectedBrand.length!==0){
-    filteredProduct = data.filter(product=>selectedBrand.some(brand=>product.fields.brand.includes(brand)))
+    filteredProduct = filteredProduct.filter(product=>selectedBrand.some(brand=>product.fields.brand.includes(brand)))
    }
-//search and filter
-   if(selectedsize.length!=0 && search){
-    const searchedProducts = data.filter(product => product.fields.tags.some(tag=>tag.toLowerCase().includes(search)))
-    filteredProduct = searchedProducts.filter(product=>selectedsize.some(size=>product.fields.size.includes(size)))
-   }
+
+
+
+
+
 
 
 //sort products
@@ -58,8 +86,10 @@ export default function ProductsPage({data}:{data:Products[]}) {
   }
 
 
-
- 
+// useEffect(()=>{
+//   reset()
+// // eslint-disable-next-line react-hooks/exhaustive-deps
+// },[pathname])
 
   if(displayProduct.length === 0){
     return (

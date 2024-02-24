@@ -3,12 +3,17 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import CartItems from "./CartItems";
 import useCart from "@/app/components/hooks/useCart";
+import { ItemStock } from "@/types";
 
 
-export default function CartDetails() {
+
+export default function CartDetails({itemsStock}:{itemsStock:ItemStock[]}) {
   const router=useRouter()
   const {items_count,sub_total,shipping_fee,total_price}=useCart()
   const [disable,setDisable]=useState(false)
+  const {items}=useCart()
+  const itemStock=itemsStock.filter(data=>items.some(item=>data.item_id === item.id && item.size? data.item_size === item.size:null))
+
   useEffect(()=>{
     if(sub_total===0){
       setDisable(true)
@@ -22,7 +27,7 @@ export default function CartDetails() {
       <div className="col-span-2">
       <h1 className="text-2xl">Cart</h1>
       {items_count>0?(
-          <CartItems/>
+          <CartItems itemStock={itemStock}/>
       ):(
         <div className="py-10">
           <p>There are no items in your cart.</p>
