@@ -77,6 +77,7 @@ console.log(items)
                     router.replace(`/order/${id}?email=${shipping_details.email}`)
                 }
             }else{
+                clear()
                 throw new Error(error?.message)
             }
 

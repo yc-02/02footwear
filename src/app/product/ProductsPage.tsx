@@ -1,7 +1,7 @@
 "use client"
 import { ItemStock, Products } from "@/types";
 import ProductCard from "./ProductCard"
-import {usePathname, useRouter, useSearchParams} from "next/navigation";
+import {useSearchParams} from "next/navigation";
 import Sort from "./Sort";
 import { Suspense, useEffect, useState} from "react";
 import Filter from "./Filter";
@@ -18,7 +18,6 @@ export default function ProductsPage({data}:{
    const searchParams = useSearchParams()
    const search = searchParams.get('search')?.toLowerCase()
    const sort = searchParams.get('sort')
-  //  const pathname = usePathname()
    const {selectedsize,selectedBrand,reset} =useFilter()
    const [itemsStock,setItemsStock]=useState<ItemStock[]|null>()
    const supabase = createClient()
@@ -42,7 +41,7 @@ export default function ProductsPage({data}:{
     filteredProduct = filteredProduct.filter(product => product.fields.tags.some(tag=>tag.toLowerCase().includes(search)))
   }
      
-//filter options
+//filter sizes options
    const sizes = filteredProduct.map(p=>p.fields.size)  
 //filter by size
 //get outofstockitems by size
@@ -57,7 +56,7 @@ export default function ProductsPage({data}:{
      }
    }
 
-//filter options
+//filter brands options
 const brands = filteredProduct.map(p=>p.fields.brand)
 
 //filter by brand
@@ -86,10 +85,6 @@ const brands = filteredProduct.map(p=>p.fields.brand)
   }
 
 
-// useEffect(()=>{
-//   reset()
-// // eslint-disable-next-line react-hooks/exhaustive-deps
-// },[pathname])
 
   if(displayProduct.length === 0){
     return (

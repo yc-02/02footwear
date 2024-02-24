@@ -11,12 +11,9 @@ export const metadata:Metadata={
 export default async function CartPage() {
   const cookieStore = cookies()
   const supabase = createClient(cookieStore)
-  const {data:itemsStock,error} = await supabase.from('footwear_items_stock').select()
-  if(error){
-    throw new Error(error.message)
-  }
+
   
   return (
-    <CartDetails itemsStock={itemsStock}/>
+    <CartDetails/>
   )
 }

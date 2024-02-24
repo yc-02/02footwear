@@ -7,12 +7,11 @@ import { ItemStock } from "@/types";
 
 
 
-export default function CartDetails({itemsStock}:{itemsStock:ItemStock[]}) {
+export default function CartDetails() {
   const router=useRouter()
   const {items_count,sub_total,shipping_fee,total_price}=useCart()
   const [disable,setDisable]=useState(false)
   const {items}=useCart()
-  const itemStock=itemsStock.filter(data=>items.some(item=>data.item_id === item.id && item.size? data.item_size === item.size:null))
 
   useEffect(()=>{
     if(sub_total===0){
@@ -27,7 +26,7 @@ export default function CartDetails({itemsStock}:{itemsStock:ItemStock[]}) {
       <div className="col-span-2">
       <h1 className="text-2xl">Cart</h1>
       {items_count>0?(
-          <CartItems itemStock={itemStock}/>
+          <CartItems/>
       ):(
         <div className="py-10">
           <p>There are no items in your cart.</p>
