@@ -3,18 +3,19 @@ import Link from "next/link"
 import Image from "next/image"
 import useCart from "@/app/components/hooks/useCart"
 import { TrashIcon } from "@heroicons/react/24/outline"
+import { ItemStock } from "@/types"
 
 
 
-export default function CartItems() {
+export default function CartItems({data}:{data:ItemStock[]|null}) {
   const {items,increase,decrease,deleteItem}=useCart()
-  
 
-  
+ const inventory = data?.filter(i=>items.some(item=>item.id === i.item_id && item.size === i.item_size))
+
   return (
     <div>
         {items.map((item)=>
-            <div key={item.id} className="flex gap-10 py-10">
+            <div key={item.id+item.size} className="flex gap-10 py-10">
                 <Link href={'/product/'+item.slug}>
                 <Image src={'http:'+item.image} 
                 width={150}
@@ -40,6 +41,10 @@ export default function CartItems() {
                 <TrashIcon className="w-6 h-6"/>
                 </button>
                 </div>
+                {inventory?.map(i=>(i.item_id ===item.id && i.item_size ===item.size && i.item_size_inventory<item.qty&&
+                (<div key={i.id}>
+                <p className="text-sm text-pink-800">There are not enough products in stock, only {i.item_size_inventory} left.</p>
+                </div>)))}
             </div>
 
           )}

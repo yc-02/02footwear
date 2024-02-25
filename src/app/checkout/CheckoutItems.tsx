@@ -9,7 +9,7 @@ export const CheckoutItems = () => {
   return (
     <div>
         {items.map((item)=>
-            <div key={item.size} className="flex gap-10 py-10">
+            <div key={item.id+item.size} className="flex gap-10 py-10">
                 <Link href={'/product/'+item.slug}>
                 <Image src={'http:'+item.image} 
                 width={100}

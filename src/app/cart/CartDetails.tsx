@@ -3,28 +3,35 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import CartItems from "./CartItems";
 import useCart from "@/app/components/hooks/useCart";
+import { ItemStock } from "@/types";
 
 
 
-export default function CartDetails() {
+export default function CartDetails({data}:{data:ItemStock[]|null}) {
   const router=useRouter()
-  const {items_count,sub_total,shipping_fee,total_price}=useCart()
+  const {items_count,sub_total,shipping_fee,total_price,items}=useCart()
   const [disable,setDisable]=useState(false)
+  const overStock = data?.filter(i=>items.some(item=>item.id === i.item_id && item.size === i.item_size && item.qty>i.item_size_inventory))
+  console.log(overStock)
+
 
   useEffect(()=>{
     if(sub_total===0){
       setDisable(true)
-    }else{
+    }if(overStock?.length!=0){
+      setDisable(true)
+    }
+    else{
       setDisable(false)
     }
-  },[sub_total])
+  },[overStock?.length, sub_total])
 
   return (
     <div className="md:grid grid-cols-3 p-10">
       <div className="col-span-2">
       <h1 className="text-2xl">Cart</h1>
       {items_count>0?(
-          <CartItems/>
+          <CartItems data={data}/>
       ):(
         <div className="py-10">
           <p>There are no items in your cart.</p>

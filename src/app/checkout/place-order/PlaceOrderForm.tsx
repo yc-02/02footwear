@@ -24,7 +24,6 @@ export const PlaceOrderForm =()=>{
         }
     },[selectedPaymentMethod])
 
-    console.log(items)
 
 
   const [loading,setLoading] = useState(false)
@@ -41,7 +40,9 @@ export const PlaceOrderForm =()=>{
     const handleSubmit = async(e:FormEvent)=>{
         setLoading(!loading)
         e.preventDefault()
-        const{data:{user}}=await supabase.auth.getUser()
+        clear()
+
+        const{data:{user}} = await supabase.auth.getUser()
         const {data,error}=await supabase.from('footwear_order_details').insert(
             {
                 items:Array.from(items),
@@ -53,22 +54,39 @@ export const PlaceOrderForm =()=>{
                 total_price:total_price,
                 user_id:user?.id,
                 email:user?.email,
-                
-
             }).select()
+
             if(error){
                 throw new Error(error.message)
-            }            
-            if(data&&data.length>0){
-                const id = data[0].id
-                clear()
-                if(user){
-                    router.replace(`/order/${id}`)
-                }else{
-                    router.replace(`/order/${id}?email=${shipping_details.email}`)
-                }
+            }     
 
-            }
+
+        items.map( async (item)=>{       
+                
+            if(data&&data.length>0){
+                    const id = data[0].id
+                    const {error} = await supabase.from('footwear_ordered_items').insert({
+                    order_id:id,
+                    item_id:item.id,
+                    item_brand:item.brand,
+                    item_name:item.name,
+                    item_price:item.price,
+                    item_size:item.size,
+                    item_qty:item.qty,
+                    item_gender:item.gender
+
+                    })
+                    if(error){
+                        throw new Error(error.message)
+                    }
+                    if(user){
+                        router.replace(`/order/${id}`)
+                    }else{
+                        router.replace(`/order/${id}?email=${shipping_details.email}`)
+                    }
+                }
+        })
+
 
     }
 
