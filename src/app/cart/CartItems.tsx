@@ -15,6 +15,7 @@ export default function CartItems({data}:{data:ItemStock[]|null}) {
   return (
     <div>
         {items.map((item)=>
+        <>
             <div key={item.id+item.size} className="flex gap-10 py-10">
                 <Link href={'/product/'+item.slug}>
                 <Image src={'http:'+item.image} 
@@ -41,12 +42,12 @@ export default function CartItems({data}:{data:ItemStock[]|null}) {
                 <TrashIcon className="w-6 h-6"/>
                 </button>
                 </div>
-                {inventory?.map(i=>(i.item_id ===item.id && i.item_size ===item.size && i.item_size_inventory<item.qty&&
-                (<div key={i.id}>
-                <p className="text-sm text-pink-800">There are not enough products in stock, only {i.item_size_inventory} left.</p>
-                </div>)))}
             </div>
-
+            {inventory?.map(i=>(i.item_id ===item.id && i.item_size ===item.size && i.item_size_inventory<item.qty&&
+              (<div key={i.id}>
+              <p className="text-sm text-pink-800 py-2">There are not enough products in stock, only {i.item_size_inventory} left.</p>
+              </div>)))}
+              </>
           )}
     </div>
   )
