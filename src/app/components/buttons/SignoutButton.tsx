@@ -11,7 +11,6 @@ export default function SignoutButton() {
         if (error){
           throw new Error(error.message)
         }else{
-            router.push('/')
             router.refresh()
             
         }

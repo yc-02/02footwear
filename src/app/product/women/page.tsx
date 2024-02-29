@@ -1,6 +1,7 @@
 import { Products } from "@/types";
 import ProductsPage from "../ProductsPage";
 import { Metadata } from "next";
+import { Suspense } from "react";
 
 export const metadata:Metadata={
   title:"Women's product"
@@ -25,7 +26,9 @@ const data = await ProductData()
 
 return(
   <div>
+    <Suspense fallback={<p>Loading...</p>}>
     <ProductsPage data={data}/>
+    </Suspense>
   </div>
 )
 }
