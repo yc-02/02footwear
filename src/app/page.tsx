@@ -21,12 +21,13 @@ export default async function HomePage(){
    const heroUrl = data.hero.fields.file.url
    const trendingUrl=data.trending.map((image)=>image.fields.file.url)
    const trending=data.trending.map((image)=>image.fields.file.details.image)
+   const heroRatio = hero.height/hero.width 
 
   return (
     <Suspense fallback={<p>loading ...</p>}>
     <div className="flex flex-col">
-    <div className="w-full bg-blue-500 flex h-60 md:h-80 justify-center">
-      <Image src={'http:'+ heroUrl} width={hero.width} height={hero.height} alt="image" className="object-cover"/>
+    <div className="bg-blue-500 flex justify-center md:h-80">
+      <Image src={'http:'+ heroUrl} width={1000} height={1000*heroRatio} alt="image" className="object-cover" />
     </div>
     <p className="text-2xl p-10">Trending</p>
     <div className="px-10 flex justify-center gap-5">
