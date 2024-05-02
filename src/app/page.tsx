@@ -21,24 +21,22 @@ export default async function HomePage(){
    const heroUrl = data.hero.fields.file.url
    const trendingUrl=data.trending.map((image)=>image.fields.file.url)
    const trending=data.trending.map((image)=>image.fields.file.details.image)
-   const heroRatio = hero.height/hero.width 
 
   return (
     <Suspense fallback={<p>loading ...</p>}>
     <div className="flex flex-col">
-    <div className="bg-blue-500 flex justify-center md:h-80">
-      <Image src={'http:'+ heroUrl} width={1000} height={1000*heroRatio} alt="image" className="object-cover" />
+    <div className="w-screen overflow-hidden flex justify-center items-center max-h-96 bg-blue-500">
+      <Image src={'http:'+ heroUrl} width={500} height={500} alt="image" className="object-cover" />
     </div>
-    <p className="text-2xl p-10">Trending</p>
-    <div className="px-10 flex justify-center gap-5">
-        <div className="relative w-1/2">
-        <Image src={'http:'+trendingUrl[0]} width={trending[0].width} height={trending[0].height} alt="image" className="w-full rounded"/>
+    <p className="text-xl px-6 py-6">Trending Now</p>
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 px-6">
+      { trendingUrl.map(a=>(
+        <div className="relative overflow-hidden" key={a}>
+        <Image src={'http:'+ a} width={500} height={500} alt="image" className="w-full rounded object-cover"/>
         <Link className=" absolute bottom-5 left-5 bg-white p-2 rounded-3xl" href="/product">Shop</Link>
         </div>
-        <div className="relative w-1/2">
-        <Image src={'http:'+trendingUrl[1]} width={trending[1].width} height={trending[1].height} alt="image" className="w-full rounded"/>
-        <Link className=" absolute bottom-5 left-5 bg-white p-2 rounded-3xl" href="/product">Shop</Link>
-        </div>
+        )
+      )}
     </div>
     </div>
     </Suspense>
