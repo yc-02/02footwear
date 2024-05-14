@@ -9,6 +9,7 @@ import useFilter from "../components/hooks/useFilter";
 import FilterRemoveButtons from "./FilterRemoveButtons";
 import FilterSortSm from "./FilterSortSm";
 import { createClient } from "@/utils/supabase/client";
+import Loading from "../loading";
 
 
 
@@ -112,7 +113,7 @@ const brands = filteredProduct.map(p=>p.fields.brand)
       </div>
       <div className="col-span-5 md:col-span-4">
         <FilterRemoveButtons/>
-        <Suspense fallback={<p>Loading...</p>}>
+        <Suspense fallback={<Loading/>}>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4 bg-slate-50 p-5">
         {displayProduct.map((p)=>(
           <ProductCard key={p.sys.id} product={p}/>

@@ -2,6 +2,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { HomeImages } from "@/types"
 import { Suspense } from "react"
+import Loading from "./loading"
 
 export default async function HomePage(){
 
@@ -23,7 +24,7 @@ export default async function HomePage(){
    const trending=data.trending.map((image)=>image.fields.file.details.image)
 
   return (
-    <Suspense fallback={<p>loading ...</p>}>
+    <Suspense fallback={<Loading/>}>
     <div className="flex flex-col">
     <div className="w-screen overflow-hidden flex justify-center items-center max-h-96 bg-blue-500">
       <Image src={'http:'+ heroUrl} width={500} height={500} alt="image" className="object-cover" />

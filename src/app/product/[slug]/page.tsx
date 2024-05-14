@@ -4,6 +4,7 @@ import ProductDetails from "@/app/product/[slug]/ProductDetails"
 import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
 import { Suspense } from "react"
+import Loading from "@/app/loading"
 interface Entries{
   items:Products[]
 }
@@ -53,7 +54,7 @@ export default async function Detailpage({params}:{params:{slug:string}}) {
 
 
   return (
-<Suspense fallback={<p>Loading...</p>}>
+<Suspense fallback={<Loading/>}>
 <div className="bg-slate-50 p-5">
   <ProductDetails product={product} userLiked={userLiked} likesCount={LikesCount} itemsStock={itemsStock}/>
 </div>

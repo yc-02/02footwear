@@ -4,6 +4,7 @@ import { Metadata } from "next"
 import FetchOrder from "./FetchOrder"
 import { Order } from "@/types"
 import { Suspense } from "react"
+import Loading from "@/app/loading"
 
 
 export const metadata:Metadata={
@@ -19,7 +20,7 @@ export default async function page({params}:{params:{id:string}}) {
 
   
     return(
-        <Suspense fallback={<p>Loading...</p>}>
+        <Suspense fallback={<Loading/>}>
         <FetchOrder data={order} user={user}/>
         </Suspense>
     )

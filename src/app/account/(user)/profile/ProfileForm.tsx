@@ -26,7 +26,6 @@ export default function ProfileForm({user}:{user:User}) {
         const { data: user, error } = await supabase.auth.updateUser(
                {data:{
                 first_name:firstName,
-                last_name:lastName
                }}
           )
           if (error){
@@ -55,23 +54,7 @@ export default function ProfileForm({user}:{user:User}) {
     const [lastName,setLastName]=useState(`${user?.user_metadata.last_name}`)
     const [password,setPassword]=useState("")
 
-    const popoverRef = useRef<HTMLDivElement>(null)
 
-useEffect(()=>{
-  const handleClickOutside = (event:MouseEvent)=>{
-    if (popoverRef.current && !popoverRef.current.contains(event.target as Node)) {
-      setEditFirstName(false)
-      setEditLastName(false)
-      setEditPassword(false)
-    }
-  }
-
-document.addEventListener('mousedown', handleClickOutside);
-
-return () => {
-  document.removeEventListener('mousedown', handleClickOutside);
-};
-}, [])
 
   return (
     <div className="flex flex-col gap-5 p-10 w-screen md:w-auto">
@@ -80,7 +63,6 @@ return () => {
         </div>
 
         <div
-        ref={popoverRef} 
         className={`${editFirstName?"absolute inset-x-0 md:inset-auto bg-slate-50 rouded shadow p-10 flex flex-col justify-center":"hidden"}`}>
         <button onClick={()=>setEditFirstName(false)} className="flex justify-end">
             <XMarkIcon className="w-6 h-6"/>
@@ -104,7 +86,6 @@ return () => {
         </div>
 
         <div 
-        ref={popoverRef} 
         className={`${editLastName?"absolute inset-x-0 md:inset-auto bg-slate-50 rouded shadow p-10 flex flex-col justify-center":"hidden"}`}>
         <button onClick={()=>setEditLastName(false)}  className="flex justify-end">
             <XMarkIcon className="w-6 h-6"/>
@@ -129,14 +110,13 @@ return () => {
         </div>
 
         <div
-        ref={popoverRef}  
         className={`${editPassword?"absolute inset-x-0 md:inset-auto bg-slate-50 rouded shadow p-10 flex flex-col justify-center":"hidden"}`}>
         <button onClick={()=>setEditPassword(false)} className="flex justify-end">
             <XMarkIcon className="w-6 h-6"/>
             </button>
         <form action={updatePassword}  className="flex flex-col gap-3 items-center">
         <label className="flex gap-2 items-baseline">
-            Password:
+            New Password:
             <input type="text" 
             className="border p-1 border-slate-800 rounded-lg"
             defaultValue='' name="password" 
